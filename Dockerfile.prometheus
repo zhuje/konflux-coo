@@ -1,0 +1,53 @@
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22 as builder
+
+RUN dnf module install -y nodejs:16/development
+ENV NPM_CONFIG_NODEDIR=/usr
+
+RUN yum install -y --setopt=tsflags=nodocs bzip2 jq golang-github-prometheus-promu
+
+COPY prometheus/ .
+
+WORKDIR /workspace
+
+ENV GOFLAGS='-mod=mod'
+ARG GO_BIN=ARG GO_BIN=/workspace/prometheus/deps/gomod/bin
+
+# Move the prometheus-promu we install to go's bin/ to avoid re-installing it during the build
+# Makefile.common expects the promu binary in a certain location
+RUN mkdir $GO_BIN \
+    && ln -s $(which promu) $GO_BIN/promu \
+    && make build
+
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+WORKDIR /
+
+COPY --from=builder workspace/prometheus                            /bin/prometheus
+COPY --from=builder workspace/promtool                              /bin/promtool
+COPY --from=builder workspace/documentation/examples/prometheus.yml /etc/prometheus/prometheus.yml
+COPY --from=builder workspace/console_libraries/                    /usr/share/prometheus/console_libraries/
+COPY --from=builder workspace/consoles/                             /usr/share/prometheus/consoles/
+
+RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/
+RUN mkdir -p /prometheus && \
+    chgrp -R 0 /etc/prometheus /prometheus && \
+    chmod -R g=u /etc/prometheus /prometheus
+
+USER       nobody
+EXPOSE     9090
+WORKDIR    /prometheus
+VOLUME     ["/prometheus"]
+ENTRYPOINT ["/bin/prometheus"]
+CMD        [ "--config.file=/etc/prometheus/prometheus.yml", \
+             "--storage.tsdb.path=/prometheus", \
+             "--web.console.libraries=/usr/share/prometheus/console_libraries", \
+             "--web.console.templates=/usr/share/prometheus/consoles" ]
+
+LABEL com.redhat.component="coo-prometheus-container" \
+      name="prometheus/prometheus" \
+      version="v2.54.1" \
+      summary="Prometheus for Cluster Observability Operator" \
+      io.openshift.expose-services="" \
+      io.openshift.tags="monitoring" \
+      io.k8s.display-name="COO Prometheus" \
+      maintainer="team-monitoring@redhat.com" \
+      description="Prometheus for Cluster Observability Operator"
