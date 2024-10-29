@@ -1,0 +1,27 @@
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22 as builder
+
+WORKDIR /opt/app-root/src
+
+copy thanos .
+ENV GOFLAGS='-mod=mod'
+# Until being able to fetch promu from a repo in konflux, fetch it from go.
+RUN go install -mod=mod github.com/prometheus/promu@v0.15.0 \
+    && make build
+
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+WORKDIR /
+
+COPY --from=builder /go/bin/thanos /bin/thanos
+
+USER nobody
+ENTRYPOINT [ "/bin/thanos" ]
+
+LABEL com.redhat.component="coo-thanos-container" \
+      name="rhobs/thanos" \
+      version="v0.36.1" \
+      summary="Thanos for Cluster Observability Operator" \
+      io.openshift.expose-services="" \
+      io.openshift.tags="monitoring" \
+      io.k8s.display-name="COO Thanos" \
+      maintainer="team-monitoring@redhat.com" \
+      description="Thanos for Cluster Observability Operator"
