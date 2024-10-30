@@ -1,31 +1,24 @@
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22 as builder
-
 RUN dnf module install -y nodejs:16/development
 ENV NPM_CONFIG_NODEDIR=/usr
+WORKDIR workspace
 
-RUN yum install -y --setopt=tsflags=nodocs bzip2 jq golang-github-prometheus-promu
+RUN yum install -y --setopt=tsflags=nodocs bzip2 jq
 
 COPY prometheus/ .
 
-WORKDIR /workspace
-
 ENV GOFLAGS='-mod=mod'
-ARG GO_BIN=ARG GO_BIN=/workspace/prometheus/deps/gomod/bin
-
-# Move the prometheus-promu we install to go's bin/ to avoid re-installing it during the build
-# Makefile.common expects the promu binary in a certain location
-RUN mkdir $GO_BIN \
-    && ln -s $(which promu) $GO_BIN/promu \
+RUN go install -mod=mod github.com/prometheus/promu@v0.17.0 \
     && make build
 
 FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
-WORKDIR /
 
 COPY --from=builder workspace/prometheus                            /bin/prometheus
 COPY --from=builder workspace/promtool                              /bin/promtool
 COPY --from=builder workspace/documentation/examples/prometheus.yml /etc/prometheus/prometheus.yml
 COPY --from=builder workspace/console_libraries/                    /usr/share/prometheus/console_libraries/
 COPY --from=builder workspace/consoles/                             /usr/share/prometheus/consoles/
+
 
 RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/
 RUN mkdir -p /prometheus && \
