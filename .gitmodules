@@ -31,3 +31,6 @@
 	path = ui-monitoring
 	url = https://github.com/openshift/monitoring-plugin.git
 	branch = main
+[submodule "thanos"]
+	path = thanos
+	url = https://github.com/thanos-io/thanos.git
