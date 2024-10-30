@@ -1,29 +1,36 @@
-FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22 as builder
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22 AS builder
+
 RUN dnf module install -y nodejs:16/development
+
 ENV NPM_CONFIG_NODEDIR=/usr
-WORKDIR workspace
+
+WORKDIR /workspace
 
 RUN yum install -y --setopt=tsflags=nodocs bzip2 jq
 
 COPY prometheus/ .
 
 ENV GOFLAGS='-mod=mod'
-RUN go install -mod=mod github.com/prometheus/promu@v0.17.0 \
+
+# Download and install promu for the specified OS and architecture
+ARG TARGETOS TARGETARCH
+RUN wget https://github.com/prometheus/promu/releases/download/v0.17.0/promu-0.17.0.${TARGETOS}-${TARGETARCH}.tar.gz \
+    && tar -xzf promu-0.17.0.${TARGETOS}-${TARGETARCH}.tar.gz -C /usr/local/bin \
+    && rm promu-0.17.0.${TARGETOS}-${TARGETARCH}.tar.gz \
     && make build
 
 FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
 
-COPY --from=builder workspace/prometheus                            /bin/prometheus
-COPY --from=builder workspace/promtool                              /bin/promtool
-COPY --from=builder workspace/documentation/examples/prometheus.yml /etc/prometheus/prometheus.yml
-COPY --from=builder workspace/console_libraries/                    /usr/share/prometheus/console_libraries/
-COPY --from=builder workspace/consoles/                             /usr/share/prometheus/consoles/
+COPY --from=builder /workspace/prometheus                            /bin/prometheus
+COPY --from=builder /workspace/promtool                              /bin/promtool
+COPY --from=builder /workspace/documentation/examples/prometheus.yml /etc/prometheus/prometheus.yml
+COPY --from=builder /workspace/console_libraries/                    /usr/share/prometheus/console_libraries/
+COPY --from=builder /workspace/consoles/                             /usr/share/prometheus/consoles/
 
-
-RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/
-RUN mkdir -p /prometheus && \
-    chgrp -R 0 /etc/prometheus /prometheus && \
-    chmod -R g=u /etc/prometheus /prometheus
+RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/ \
+    && mkdir -p /prometheus \
+    && chgrp -R 0 /etc/prometheus /prometheus \
+    && chmod -R g=u /etc/prometheus /prometheus
 
 USER       nobody
 EXPOSE     9090
