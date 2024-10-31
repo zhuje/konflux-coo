@@ -10,10 +10,21 @@ COPY obo-prometheus-operator/ .
 # Build
 RUN make prometheus-config-reloader
 
-FROM quay.io/prometheus/busybox-${OS}-${ARCH}:latest
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
 
 COPY --from=builder workspace/prometheus-config-reloader /bin/prometheus-config-reloader
+COPY --from=builder /workspace/LICENSE      /licenses/.
 
 USER nobody
 
 ENTRYPOINT ["/bin/prometheus-config-reloader"]
+
+LABEL com.redhat.component="coo-po-prometheus-config-reloader" \
+      name="prometheus-operator-prometheus-config-reloader" \
+      version="v0.77.1" \
+      summary="Prometheus Config Reloader for Prometheus Operator" \
+      io.openshift.tags="monitoring" \
+      io.k8s.display-name="Prometheus Config Reloader for Prometheus Operator" \
+      maintainer="OpenShift Monitoring team <team-monitoring-incluster@redhat.com>" \
+      maintainer="Prometheus Config Reloader for Prometheus Operator" \
+      description="Prometheus Config Reloader for Prometheus Operator"
