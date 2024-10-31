@@ -11,11 +11,12 @@ COPY alertmanager/ .
 ENV NO_DOCKER=true
 RUN make build
 
-FROM quay.io/prometheus/busybox-${OS}-${ARCH}:latest
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
 
 COPY --from=builder workspace/amtool       /bin/amtool
 COPY --from=builder workspace/alertmanager /bin/alertmanager
 COPY --from=builder workspace/examples/ha/alertmanager.yml      /etc/alertmanager/alertmanager.yml
+COPY --from=builder workspace/LICENSE      /licenses/.
 
 RUN mkdir -p /alertmanager && \
     chown -R nobody:nobody etc/alertmanager /alertmanager
@@ -27,3 +28,12 @@ WORKDIR    /alertmanager
 ENTRYPOINT [ "/bin/alertmanager" ]
 CMD        [ "--config.file=/etc/alertmanager/alertmanager.yml", \
              "--storage.path=/alertmanager" ]
+
+LABEL com.redhat.component="coo-alertmanager" \
+      name="Alertmanger" \
+      version="v0.27.0" \
+      summary="Alertmanager for Cluster Observability Operator" \
+      io.openshift.tags="openshift,monitoring" \
+      io.k8s.display-name="Alertmanage" \
+      maintainer="OpenShift Monitoring team <team-monitoring-incluster@redhat.com>" \
+      description="Alertmanager for Cluster Observability Operator" \
