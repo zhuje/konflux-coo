@@ -1,12 +1,12 @@
-FROM scratch
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1052.1724178568
 
 # Core bundle labels.
 LABEL operators.operatorframework.io.bundle.mediatype.v1=registry+v1
 LABEL operators.operatorframework.io.bundle.manifests.v1=manifests/
 LABEL operators.operatorframework.io.bundle.metadata.v1=metadata/
-LABEL operators.operatorframework.io.bundle.package.v1=observability-operator
-LABEL operators.operatorframework.io.bundle.channels.v1=development
-LABEL operators.operatorframework.io.bundle.channel.default.v1=development
+LABEL operators.operatorframework.io.bundle.package.v1=cluster-observability-operator
+LABEL operators.operatorframework.io.bundle.channels.v1=stable
+LABEL operators.operatorframework.io.bundle.channel.default.v1=stable
 LABEL operators.operatorframework.io.metrics.builder=operator-sdk-v1.36.1
 LABEL operators.operatorframework.io.metrics.mediatype.v1=metrics+v1
 LABEL operators.operatorframework.io.metrics.project_layout=unknown
@@ -15,7 +15,20 @@ LABEL operators.operatorframework.io.metrics.project_layout=unknown
 LABEL operators.operatorframework.io.test.mediatype.v1=scorecard+v1
 LABEL operators.operatorframework.io.test.config.v1=tests/scorecard/
 
+LABEL com.redhat.component="coo-bundle" \
+      name="cluster-observability-operator-bundle" \
+      version="v1.0.0" \
+      com.redhat.openshift.versions=v4.12 \
+      summary="Cluster Observability Operator Bundle" \
+      io.openshift.tags="openshift,observability,monitoring" \
+      io.k8s.display-name="Cluster Observability Operator Bundle" \
+      maintainer="OpenShift Monitoring team <team-monitoring-incluster@redhat.com>" \
+      description="Cluster Observability Operator Bundle" \
+      io.k8s.description="Cluster Observability Operator Bundle" \
+      vendor="Red Hat, Inc."
+
 # Copy files to locations specified by labels.
 COPY observability-operator/bundle/manifests /manifests/
 COPY observability-operator/bundle/metadata /metadata/
 COPY observability-operator/bundle/tests/scorecard /tests/scorecard/
+COPY observability-operator/LICENSE /licenses/.
