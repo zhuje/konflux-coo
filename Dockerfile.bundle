@@ -6,7 +6,7 @@ COPY /observability-operator/bundle/ bundle
 COPY /bundle-patches/render_templates .
 
 RUN mv bundle/manifests/observability-operator.clusterserviceversion.yaml bundle/manifests/cluster-observability-operator.clusterserviceversion.yaml
-RUN ./render_tamplates bundle/manifests/cluster-observability-operator.clusterserviceversion.yaml bundle/metadata/annotations.yaml
+RUN ./render_templates bundle/manifests/cluster-observability-operator.clusterserviceversion.yaml bundle/metadata/annotations.yaml
 
 
 
