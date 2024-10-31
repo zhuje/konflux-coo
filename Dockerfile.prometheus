@@ -26,6 +26,8 @@ COPY --from=builder /workspace/promtool                              /bin/promto
 COPY --from=builder /workspace/documentation/examples/prometheus.yml /etc/prometheus/prometheus.yml
 COPY --from=builder /workspace/console_libraries/                    /usr/share/prometheus/console_libraries/
 COPY --from=builder /workspace/consoles/                             /usr/share/prometheus/consoles/
+COPY --from=builder /workspace/LICENSE      /licenses/.
+
 
 RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/ \
     && mkdir -p /prometheus \
