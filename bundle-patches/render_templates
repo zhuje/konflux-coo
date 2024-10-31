@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+
+set -ex
+
+csv_file="$1"
+annotation_file="$2"
+PRODUCT_VERSION="1.0.0"
+X_VERSION="1"
+Y_VERSION="0"
+Z_VERSION="0"
+CSV_REPLACES_VERSION="0.4.1"
+
+# Add openshift specific annotations to CSV file
+# https://docs.openshift.com/container-platform/4.14/operators/operator_sdk/osdk-generating-csvs.html#osdk-csv-annotations-infra_osdk-generating-csvs
+yq -i '.metadata.annotations += {"features.operators.openshift.io/disconnected": "true"}' "$csv_file"
+yq -i '.metadata.annotations += {"features.operators.openshift.io/fips-compliant": "false"}' "$csv_file"
+yq -i '.metadata.annotations += {"features.operators.openshift.io/proxy-aware": "false"}' "$csv_file"
+yq -i '.metadata.annotations += {"features.operators.openshift.io/tls-profiles": "false"}' "$csv_file"
+yq -i '.metadata.annotations += {"features.operators.openshift.io/token-auth-aws": "false"}' "$csv_file"
+yq -i '.metadata.annotations += {"features.operators.openshift.io/token-auth-azure": "false"}' "$csv_file"
+yq -i '.metadata.annotations += {"features.operators.openshift.io/token-auth-gcp": "false"}' "$csv_file"
+yq -i '.metadata.annotations += {"features.operators.openshift.io/cnf": "false"}' "$csv_file"
+yq -i '.metadata.annotations += {"features.operators.openshift.io/cni": "false"}' "$csv_file"
+yq -i '.metadata.annotations += {"features.operators.openshift.io/csi": "false"}' "$csv_file"
+yq -i '.metadata.annotations += {"support": "Cluster Observability (https://issues.redhat.com/projects/COO/)"}' "$csv_file"
+yq -i '.metadata.annotations += {"operators.openshift.io/valid-subscription": "[\"OpenShift Kubernetes Engine\", \"OpenShift Container Platform\", \"OpenShift Platform Plus\"]"}' "$csv_file"
+yq -i '.metadata.labels += {"operatorframework.io/arch.amd64": "supported"}' "$csv_file"
+yq -i '.metadata.labels += {"operatorframework.io/arch.arm64": "supported"}' "$csv_file"
+yq -i '.metadata.labels += {"operatorframework.io/arch.ppc64le": "supported"}' "$csv_file"
+yq -i '.metadata.labels += {"operatorframework.io/arch.s390x": "supported"}' "$csv_file"
+
+# can't use IMAGE_PULL_URL since it points to the wrong registry
+# COO_IMAGE_URL=${OBSERVABILITY_OPERATOR_CONTAINER_OBSERVABILITY_OPERATOR_CONTAINER_IMAGE_PULL_URL}
+COO_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-container@sha256:f6f9a89d6e2d187e9b7d64c306f6395e09d0c6e0b5003b44927c1b9d67bc9df0"
+COO_CONF_RELOADER_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator-prometheus-config-reloader@sha256:9bc012145dd0bdd6985c9aaf39891153b25bb429b6d5ae0118b94a60d13a25e3"
+COO_ALERTMANAGER_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/alertmanager@sha256:34efb4d469e1bd1e471a3bd1517013d05efcf8122c7828f8339b9470aa3fa82c"
+COO_PROMETHEUS_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/prometheus@sha256:5e03ff780d37c30706f6baa3725470a6f4c9b2ab21e1a7e88557f1f888266c30"
+COO_THANOS_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/thanos@sha256:190dd972262967e84411625d92e5d111a4000f53a8dc7f4b6bb42ee065ed2314"
+COO_ADMISSION_WEBHOOK_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator-admission-webhook@sha256:ff9456bd5206a77acad6bc0280361510ddba261e1c320802f6331d8b592a7da4"
+COO_PO_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator@sha256:515ef26936f78bce50524c9c96f356db8932d48280a96fcd197de4d70faab98d"
+COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/dashboards-console-plugin-0-3"
+COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/distributed-tracing-console-plugin-0-3@sha256:fe1c65038d4fdcbdcabd8dca41016246703df982803dec0c84ad843342f5cd6b"
+COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/logging-console-plugin-6-0@sha256:8127697487c8fd49608519132a38d7bbde8c9c87e979e0572F=df24bb04fb575bf9"
+COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="https://quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/troubleshooting-panel-console-plugin-0-3@sha256:ee7155f91b91c303c38d3b4eaf82606279b3f0556852034c54d9d997c8139c3c"
+COO_KORREL8R_IMAGE_URL=""
+
+# Replace quay.io/rhobs image urls with registry-proxy.engineering.redhat.com/
+# urls to get brew builds to pass
+sed -i -e "s|quay.io/rhobs/observability-operator.*|${COO_IMAGE_URL}|g" "$csv_file"
+sed -i -e "s|quay.io/rhobs/obo-prometheus-operator.*|${COO_PO_IMAGE_URL}|g" "$csv_file"
+sed -i -e "s|quay.io/rhobs/obo-admission-webhook.*|${COO_ADMISSION_WEBHOOK_IMAGE_URL}|g" "$csv_file"
+
+# Replace annotation values used in the upstream bundle for those in the downstream product bundle
+sed -i -e "s|operators.operatorframework.io.bundle.package.v1: observability-operator|operators.operatorframework.io.bundle.package.v1: cluster-observability-operator|g" "$annotation_file"
+
+# Replace displayName value used in the upstream bundle so it matches the
+# downstream product bundle name
+sed -i -e "s|displayName: Observability Operator|displayName: Cluster Observability Operator|g" "$csv_file"
+sed -i -e "s|Observability Operator is a Go|Cluster Observability Operator is a Go|g" "$csv_file"
+
+# Replace link value used in the upstream bundle with the downstream name
+sed -i -e "s|name: Observability Operator|name: Cluster Observability Operator|g" "$csv_file"
+
+# first add an empty env list to the obo operator container if it doesn't exist
+# already
+yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator") | select(has("env") | not)) += {"env": []}' "$csv_file"
+
+# add the various images we want to use via an env
+# variable. This allows OSBS to massage the pullspec (registry replacement,
+# sha pinning)
+# We do that by first using sed to replace the relevant image spec with our new
+# env var.
+# Then we use yq to add the env var value to the containers environment.
+sed -i -e 's|--prometheus-config-reloader=.*|"--prometheus-config-reloader=$(RELATED_IMAGE_PROMETHEUS_CONFIG_RELOADER)"|' "$csv_file"
+VALUE="${COO_CONF_RELOADER_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "obo-prometheus-operator").spec.template.spec.containers[] | select(.name == "prometheus-operator").env) += [{"name":"RELATED_IMAGE_PROMETHEUS_CONFIG_RELOADER", "value": strenv(VALUE)}]' "$csv_file"
+
+sed -i -e 's|--images=alertmanager=.*|"--images=alertmanager=$(RELATED_IMAGE_ALERTMANAGER)"|' "$csv_file"
+VALUE="${COO_ALERTMANAGER_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_ALERTMANAGER", "value": strenv(VALUE)}]' "$csv_file"
+
+sed -i -e 's|--images=prometheus=.*|"--images=prometheus=$(RELATED_IMAGE_PROMETHEUS)"|' "$csv_file"
+VALUE="${COO_PROMETHEUS_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_PROMETHEUS", "value": strenv(VALUE)}]' "$csv_file"
+
+sed -i -e 's|--images=thanos=.*|"--images=thanos=$(RELATED_IMAGE_THANOS)"|' "$csv_file"
+VALUE="${COO_THANOS_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_THANOS", "value": strenv(VALUE)}]' "$csv_file"
+
+# TODO Once COO-144 is fixed reenable the sed command below and delete lines 150, 153, 156, 159, 162
+# sed -i -e 's|--images=ui-dashboards=.*|"--images=ui-dashboards=$(RELATED_IMAGE_CONSOLE_DASHBOARDS_PLUGIN)"|' "$csv_file"
+yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=ui-dashboards=$(RELATED_IMAGE_CONSOLE_DASHBOARDS_PLUGIN)"]' "$csv_file"
+VALUE="${COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_CONSOLE_DASHBOARDS_PLUGIN", "value": strenv(VALUE)}]' "$csv_file"
+
+yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=ui-distributed-tracing=$(RELATED_IMAGE_CONSOLE_DISTRIBUTED_TRACING_PLUGIN)"]' "$csv_file"
+VALUE="${COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_CONSOLE_DISTRIBUTED_TRACING_PLUGIN", "value": strenv(VALUE)}]' "$csv_file"
+
+yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=ui-logging=$(RELATED_IMAGE_CONSOLE_LOGGING_PLUGIN)"]' "$csv_file"
+VALUE="${COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_CONSOLE_LOGGING_PLUGIN", "value": strenv(VALUE)}]' "$csv_file"
+
+yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=ui-troubleshooting-panel=$(RELATED_IMAGE_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN)"]' "$csv_file"
+VALUE="${COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN", "value": strenv(VALUE)}]' "$csv_file"
+
+yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=korrel8r=$(RELATED_IMAGE_KORREL8R)"]' "$csv_file"
+VALUE="${COO_KORREL8R_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_KORREL8R", "value": strenv(VALUE)}]' "$csv_file"
+
+# set openshift.enabled feature gate
+yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) += ["--openshift.enabled=true"]' "$csv_file"
+
+# Set CSV .spec.version to downstream version.
+VALUE="${PRODUCT_VERSION}" yq -i '.spec.version = strenv(VALUE)' "${csv_file}"
+
+# Add .olm.skipRange annotation
+VALUE=">="${CI_X_VERSION}.${CI_Y_VERSION}.0" <${PRODUCT_VERSION}" yq -i '.metadata.annotations += {"olm.skipRange": strenv(VALUE)}' "${csv_file}"
+
+# Set replaces based upon the version defined from the environment variable or
+# calculate it to be the previous z-stream
+python3 - << END
+replaces = "${CSV_REPLACES_VERSION:-}"
+if replaces == "":
+  patch = int("${Z_VERSION}") - 1
+  if patch > 0:
+    replaces = "${X_VERSION}" + "." + "${Y_VERSION}" + "." + str(patch)
+if replaces != "":
+  import os, yaml
+  with open('${csv_file}', 'r') as f:
+    y = yaml.safe_load(f) or {}
+    y['spec']['replaces'] = "cluster-observability-operator." + replaces
+  with open('${csv_file}', 'w') as f:
+    yaml.dump(y, f)
+END
+
+# Set CSV .metadata.name to downstream version.
+VALUE="${PRODUCT_VERSION}" yq -i '.metadata.name = "cluster-observability-operator." + strenv(VALUE)' "${csv_file}"
+
+# TODO jan temp workaround until we have obo bundle creation fixed
+sed -i -e "s|image: observability-operator.*|image: ${COO_IMAGE_URL}|g" "$csv_file"
+sed -i -e "s|containerImage: observability-operator.*|containerImage: ${COO_IMAGE_URL}|g" "$csv_file"
