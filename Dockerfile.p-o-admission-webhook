@@ -10,10 +10,21 @@ COPY obo-prometheus-operator/ .
 # Build
 RUN make admission-webhook
 
-FROM quay.io/prometheus/busybox-${OS}-${ARCH}:latest
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
 
 COPY --from=builder workspace/admission-webhook /bin/admission-webhook
+COPY --from=builder /workspace/LICENSE      /licenses/.
 
 USER nobody
 
 ENTRYPOINT ["/bin/admission-webhook"]
+
+LABEL com.redhat.component="coo-po-admission-webhook" \
+      name="prometheus-operator-admission-webhook" \
+      version="v0.77.1" \
+      summary="Admission Webhook for Prometheus Operator" \
+      io.openshift.tags="monitoring" \
+      io.k8s.display-name="Admission Webhook for Prometheus Operator" \
+      maintainer="OpenShift Monitoring team <team-monitoring-incluster@redhat.com>" \
+      maintainer="Admission Webhook for Prometheus Operator" \
+      description="Admission Webhook for Prometheus Operator"

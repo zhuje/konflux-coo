@@ -26,6 +26,8 @@ COPY --from=builder /workspace/promtool                              /bin/promto
 COPY --from=builder /workspace/documentation/examples/prometheus.yml /etc/prometheus/prometheus.yml
 COPY --from=builder /workspace/console_libraries/                    /usr/share/prometheus/console_libraries/
 COPY --from=builder /workspace/consoles/                             /usr/share/prometheus/consoles/
+COPY --from=builder /workspace/LICENSE      /licenses/.
+
 
 RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/ \
     && mkdir -p /prometheus \
@@ -44,7 +46,7 @@ CMD        [ "--config.file=/etc/prometheus/prometheus.yml", \
 
 LABEL com.redhat.component="coo-prometheus-container" \
       name="prometheus/prometheus" \
-      version="v2.54.1" \
+      version="v2.55.0" \
       summary="Prometheus for Cluster Observability Operator" \
       io.openshift.expose-services="" \
       io.openshift.tags="monitoring" \

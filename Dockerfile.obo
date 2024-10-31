@@ -10,10 +10,21 @@ RUN GOOS=linux GOARCH=amd64 go build -a -tags netgo,osusergo -o manager cmd/oper
 
 # Use distroless as minimal base image to package the manager binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
-FROM gcr.io/distroless/static:nonroot
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
 WORKDIR /
 
 COPY --from=builder /workspace/manager .
+COPY --from=builder /workspace/must-gather/collection-scripts/* .
+COPY --from=builder /workspace/LICENSE      /licenses/.
 USER 65532:65532
 
 ENTRYPOINT ["/manager"]
+
+LABEL com.redhat.component="coo-operator" \
+      name="Cluster Observability Operator" \
+      version="v1.0.0" \
+      summary="Cluster Observability Operator" \
+      io.openshift.tags="openshift,observability" \
+      io.k8s.display-name="Cluster Observability Operator" \
+      maintainer="Cluster Observability Operator Team <team-monitoring-incluster@redhat.com>" \
+      description="Cluster Observability Operator"

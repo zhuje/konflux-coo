@@ -1,9 +1,11 @@
 [submodule "alertmanager"]
 	path = alertmanager
 	url = https://github.com/prometheus/alertmanager
+        branch = release-0.27
 [submodule "prometheus"]
 	path = prometheus
 	url = https://github.com/prometheus/prometheus.git
+        branch = release-2.55
 [submodule "obo-prometheus-operator"]
 	path = obo-prometheus-operator
 	url = https://github.com/rhobs/obo-prometheus-operator
