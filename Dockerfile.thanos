@@ -1,11 +1,16 @@
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22 as builder
 
-WORKDIR /opt/app-root/src
+WORKDIR /workspace
 
-copy thanos .
+COPY thanos .
+
 ENV GOFLAGS='-mod=mod'
-# Until being able to fetch promu from a repo in konflux, fetch it from go.
-RUN go install -mod=mod github.com/prometheus/promu@v0.15.0 \
+
+# Install promu and build thanos
+ARG TARGETOS TARGETARCH
+RUN wget https://github.com/prometheus/promu/releases/download/v0.17.0/promu-0.17.0.${TARGETOS}-${TARGETARCH}.tar.gz \
+    && tar -xzf promu-0.17.0.${TARGETOS}-${TARGETARCH}.tar.gz -C /usr/local/bin \
+    && rm promu-0.17.0.${TARGETOS}-${TARGETARCH}.tar.gz \
     && make build
 
 FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
