@@ -36,3 +36,4 @@
 [submodule "thanos"]
 	path = thanos
 	url = https://github.com/thanos-io/thanos.git
+        branch = release-0.36
