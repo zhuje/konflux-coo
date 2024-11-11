@@ -1,6 +1,6 @@
 FROM registry.redhat.io/ubi8/go-toolset:1.22.8 as builder
 
-ENV GOBIN=$GOPATH/bin
+USER root
 
 # renovate: datasource=github-releases depName=mikefarah/yq
 ARG YQ_VERSION=4.43.1
