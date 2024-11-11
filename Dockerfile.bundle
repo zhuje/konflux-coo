@@ -2,6 +2,8 @@ FROM registry.redhat.io/ubi8/go-toolset:1.22.7-5 as builder
 
 USER root
 
+RUN dnf install -y python3
+
 # renovate: datasource=github-releases depName=mikefarah/yq
 ARG YQ_VERSION=4.43.1
 
