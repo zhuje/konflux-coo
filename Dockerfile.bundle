@@ -1,4 +1,4 @@
-FROM registry.redhat.io/ubi8/go-toolset:1.22.8 as builder
+FROM registry.redhat.io/ubi8/go-toolset:1.22.7-5 as builder
 
 ENV GOBIN=$GOPATH/bin
 
