@@ -12,7 +12,7 @@ metadata:
       (".tekton/cluster-observability-operator-bundle-pull-request.yaml".pathChanged() ||
       ".tekton/cluster-observability-operator-bundle-push.yaml".pathChanged() ||
       "Dockerfile.bundle".pathChanged() ||
-      "bundle-patches".pathChanged() ||
+      "bundle-patches/*".pathChanged() ||
       "observability-operator".pathChanged())
   creationTimestamp: null
   labels:
