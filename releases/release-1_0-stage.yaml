@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Release
+metadata:
+  namespace: cluster-observabilit-tenant
+  name: cluster-observability-operator-1.0
+spec:
+  releasePlan: cluster-observability-operator-1-0-stage
+  snapshot: cluster-observability-operator-1-0-hd2ks
+  data:
+    releaseNotes:
+      type: RHEA
+      topic: "Cluster Observability Operator 1.0.0 release - staging."
+      issues:
+        fixed:
+          - id:
+            source:
+      references:
+        - https://access.redhat.com/security/updates/classification
