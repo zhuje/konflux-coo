@@ -7,11 +7,8 @@ metadata:
     build.appstudio.redhat.com/pull_request_number: '{{pull_request_number}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "main" &&
-      (".tekton/dashboards-console-plugin-0-3-pull-request.yaml".pathChanged() ||
-      ".tekton/dashboards-console-plugin-0-3-push.yaml".pathChanged() ||
-      "Dockerfile.ui-dashboards".pathChanged() ||
-      "ui-dashboards".pathChanged())
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch
+      == "main"
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: cluster-observability-operator-1-0
@@ -390,7 +387,7 @@ spec:
         - name: name
           value: sast-snyk-check
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-sast-snyk-check:0.3@sha256:d2dccbc6b75eb13ed574368d817fbf8ab2a9bf9a3e073c7345afb4d7849a22de
+          value: quay.io/konflux-ci/tekton-catalog/task-sast-snyk-check:0.2@sha256:eb7c643130f226c345b3602dca280e6f8cd6f90f948503918d5a2677bf0610f7
         - name: kind
           value: task
         resolver: bundles
