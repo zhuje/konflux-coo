@@ -41,7 +41,7 @@ COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/
 COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/logging-console-plugin-6-0@sha256:8127697487c8fd49608519132a38d7bbde8c9c87e979e0572F=df24bb04fb575bf9"
 COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/troubleshooting-panel-console-plugin-0-3@sha256:ee7155f91b91c303c38d3b4eaf82606279b3f0556852034c54d9d997c8139c3c"
 COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/monitoring-console-plugin-0-3@sha256:0bb654da3540268ea36060da84305804caac3f3441bbbe3248fb8acb66258d31"
-COO_KORREL8R_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/korrel8r"
+COO_KORREL8R_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/korrel8r@sha256:f6a87125d193f73791500136f2696be89d473ec2f886b10a40300b68427cc39f"
 
 # Add related images for disconnected installs
 # First we add an empty list
