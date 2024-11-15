@@ -6,8 +6,9 @@ COPY korrel8r .
 
 ENV GOFLAGS='-mod=mod'
 ENV CGO_ENABLED=0
+ENV GOEXPERIMENT=strictfipsruntime
 
-RUN go build ./cmd/korrel8r/
+RUN go build -tags strictfipsruntime ./cmd/korrel8r
 
 
 FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
@@ -16,12 +17,11 @@ WORKDIR /
 COPY --from=builder /workspace/korrel8r /bin/korrel8r
 COPY --from=builder /workspace/etc/korrel8r /etc/korrel8r
 
-USER nobody
 ENTRYPOINT [ "/bin/korrel8r", "web" ]
 
 LABEL com.redhat.component="coo-korrel8r-container" \
       name="rhobs/korrel8r" \
-      version="v0.7.3" \
+      version="v0.7.4" \
       summary="Korrel8r for Cluster Observability Operator" \
       io.openshift.expose-services="" \
       io.openshift.tags="monitoring" \
