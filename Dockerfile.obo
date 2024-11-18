@@ -12,7 +12,7 @@ RUN GOOS=linux GOARCH=amd64 go build -a -tags netgo,osusergo -o manager cmd/oper
 
 # Use distroless as minimal base image to package the manager binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
-FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 WORKDIR /
 
 COPY --from=builder /workspace/manager .

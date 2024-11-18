@@ -10,7 +10,7 @@ COPY obo-prometheus-operator/ .
 # Build
 RUN make prometheus-config-reloader
 
-FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 
 COPY --from=builder workspace/prometheus-config-reloader /bin/prometheus-config-reloader
 COPY --from=builder /workspace/LICENSE      /licenses/.

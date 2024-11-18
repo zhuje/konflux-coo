@@ -10,7 +10,7 @@ COPY obo-prometheus-operator/ .
 # Build
 RUN make operator
 
-FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 
 COPY --from=builder workspace/operator /bin/operator
 COPY --from=builder /workspace/LICENSE      /licenses/.
