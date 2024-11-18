@@ -29,5 +29,6 @@ LABEL com.redhat.component="coo-thanos-container" \
       io.openshift.expose-services="" \
       io.openshift.tags="monitoring" \
       io.k8s.display-name="COO Thanos" \
+      io.k8s.description="Thanos extends Prometheus with highly available, scalable and unlimited metric storage." \
       maintainer="team-monitoring@redhat.com" \
       description="Thanos for Cluster Observability Operator"
