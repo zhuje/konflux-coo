@@ -36,4 +36,8 @@
 [submodule "thanos"]
 	path = thanos
 	url = https://github.com/thanos-io/thanos.git
-        branch = release-0.36
+	branch = release-0.36
+[submodule "korrel8r"]
+	path = korrel8r
+	url = https://github.com/korrel8r/korrel8r.git
+	branch = main
