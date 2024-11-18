@@ -51,5 +51,6 @@ LABEL com.redhat.component="coo-prometheus-container" \
       io.openshift.expose-services="" \
       io.openshift.tags="monitoring" \
       io.k8s.display-name="COO Prometheus" \
+      io.k8s.description="Prometheus is a CNCF project that collects metrics, evaluates rules and triggers alerts." \
       maintainer="team-monitoring@redhat.com" \
       description="Prometheus for Cluster Observability Operator"
