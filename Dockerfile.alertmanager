@@ -11,7 +11,7 @@ COPY alertmanager/ .
 ENV NO_DOCKER=true
 RUN make build
 
-FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 
 COPY --from=builder workspace/amtool       /bin/amtool
 COPY --from=builder workspace/alertmanager /bin/alertmanager

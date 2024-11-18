@@ -11,7 +11,7 @@ ENV GOEXPERIMENT=strictfipsruntime
 RUN go build -tags strictfipsruntime ./cmd/korrel8r
 
 
-FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 WORKDIR /
 
 COPY --from=builder /workspace/korrel8r /bin/korrel8r

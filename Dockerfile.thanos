@@ -13,7 +13,7 @@ RUN wget https://github.com/prometheus/promu/releases/download/v0.17.0/promu-0.1
     && rm promu-0.17.0.${TARGETOS}-${TARGETARCH}.tar.gz \
     && make build
 
-FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 WORKDIR /
 
 COPY --from=builder /go/bin/thanos /bin/thanos
