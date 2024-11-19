@@ -40,4 +40,4 @@
 [submodule "korrel8r"]
 	path = korrel8r
 	url = https://github.com/korrel8r/korrel8r.git
-	branch = main
+	branch = v0.7
