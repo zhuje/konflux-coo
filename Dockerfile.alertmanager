@@ -30,10 +30,11 @@ CMD        [ "--config.file=/etc/alertmanager/alertmanager.yml", \
              "--storage.path=/alertmanager" ]
 
 LABEL com.redhat.component="coo-alertmanager" \
-      name="Alertmanger" \
+      name="Alertmanager" \
       version="v0.27.0" \
       summary="Alertmanager for Cluster Observability Operator" \
       io.openshift.tags="openshift,monitoring" \
-      io.k8s.display-name="Alertmanage" \
+      io.k8s.display-name="Alertmanager" \
+      io.k8s.description="Alertmanager handles alerts sent by client applications such as the Prometheus server" \
       maintainer="OpenShift Monitoring team <team-monitoring-incluster@redhat.com>" \
       description="Alertmanager for Cluster Observability Operator" \
