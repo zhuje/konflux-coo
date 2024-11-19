@@ -3,6 +3,6 @@
         "github>konflux-ci/mintmaker//config/renovate/renovate.json"
     ],
     "dockerfile": {
-        "fileMatch": ["^Dockerfile\.[a-zA-Z0-9\.-]+$"]
-    },
+        "fileMatch": ["^Dockerfile\\.[a-zA-Z0-9\\.-]+$"]
+    }
 }
