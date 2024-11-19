@@ -28,5 +28,6 @@ LABEL com.redhat.component="coo-operator" \
       summary="Cluster Observability Operator" \
       io.openshift.tags="openshift,observability" \
       io.k8s.display-name="Cluster Observability Operator" \
+      io.k8s.description="Cluster Observability Operator enables administrators to create standalone monitoring stacks that are independently configurable for use by different services and users." \
       maintainer="Cluster Observability Operator Team <team-monitoring-incluster@redhat.com>" \
       description="Cluster Observability Operator"
