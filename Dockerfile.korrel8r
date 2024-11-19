@@ -26,5 +26,6 @@ LABEL com.redhat.component="coo-korrel8r-container" \
       io.openshift.expose-services="" \
       io.openshift.tags="monitoring" \
       io.k8s.display-name="COO Korrel8r" \
+      io.k8s.description="Korrel8r is an observability tool for correlating observable signals and resources in a kubernetes cluster" \
       maintainer="team-monitoring@redhat.com" \
       description="Korrel8r for Cluster Observability Operator"
