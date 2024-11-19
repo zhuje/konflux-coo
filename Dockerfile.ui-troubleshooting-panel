@@ -49,5 +49,6 @@ LABEL com.redhat.component="coo-troubleshooting-panel-console-plugin" \
       summary="OpenShift console plugin to troubleshoot by correlating observability signals" \
       io.openshift.tags="openshift,observability-ui,korrel8r,correlation" \
       io.k8s.display-name="OpenShift console troubleshooting panel plugin" \
+      io.k8s.description="OpenShift console plugin to troubleshoot by correlating observability signals" \
       maintainer="Observability UI Team <team-observability-ui@redhat.com>" \
       description="OpenShift console plugin to troubleshoot by correlating observability signals"
