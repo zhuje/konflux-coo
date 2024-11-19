@@ -146,7 +146,7 @@ if replaces != "":
 END
 
 # Set CSV .metadata.name to downstream version.
-VALUE="${PRODUCT_VERSION}" yq -i '.metadata.name = "cluster-observability-operator." + strenv(VALUE)' "${csv_file}"
+VALUE="${PRODUCT_VERSION}" yq -i '.metadata.name = "cluster-observability-operator.v" + strenv(VALUE)' "${csv_file}"
 
 # TODO jan temp workaround until we have obo bundle creation fixed
 sed -i -e "s|image: observability-operator.*|image: ${COO_IMAGE_URL}|g" "$csv_file"
