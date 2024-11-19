@@ -24,6 +24,7 @@ LABEL com.redhat.component="coo-prometheus-operator" \
       summary="Prometheus Operator" \
       io.openshift.tags="monitoring" \
       io.k8s.display-name="Prometheus Operator" \
+      io.k8s.description="COO Prometheus Operator" \
       maintainer="OpenShift Monitoring team <team-monitoring-incluster@redhat.com>" \
       maintainer="Prometheus Operator" \
       description="Prometheus Operator"
