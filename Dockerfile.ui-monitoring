@@ -48,5 +48,6 @@ LABEL com.redhat.component="coo-monitoring-console-plugin" \
       summary="OpenShift monitoring plugin to view and explore metrics and alerts" \
       io.openshift.tags="openshift,observability-ui,metrics,alerts" \
       io.k8s.display-name="OpenShift console monitoring plugin" \
+      io.k8s.description="OpenShift monitoring plugin to view and explore metrics and alerts" \
       maintainer="Observability UI Team <team-observability-ui@redhat.com>" \
       description="OpenShift monitoring plugin to view and explore metrics and alerts"
