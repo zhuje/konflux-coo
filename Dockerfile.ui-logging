@@ -50,5 +50,6 @@ LABEL com.redhat.component="coo-logging-console-plugin" \
       summary="OpenShift console plugin to view and explore logs" \
       io.openshift.tags="openshift,observability-ui,logging" \
       io.k8s.display-name="OpenShift console logging plugin" \
+      io.k8s.description="OpenShift console plugin to view and explore logs" \
       maintainer="Observability UI Team <team-observability-ui@redhat.com>" \
       description="OpenShift console plugin to view and explore logs"
