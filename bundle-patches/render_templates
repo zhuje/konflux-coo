@@ -30,17 +30,29 @@ yq -i '.metadata.labels += {"operatorframework.io/arch.ppc64le": "supported"}' "
 yq -i '.metadata.labels += {"operatorframework.io/arch.s390x": "supported"}' "$csv_file"
 
 COO_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-container@sha256:e0a56da0af5d9383c887db80fd72b99c9e3dbbdf5f4ce10e8f713e7c54fe1896"
+
 COO_CONF_RELOADER_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator-prometheus-config-reloader@sha256:ba40a32ea841d37aaac7579f5c5e08575e82b6e434e35b37b249d83514a6ec34"
+
 COO_ALERTMANAGER_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/alertmanager@sha256:af5a524a56ad16d8c387e718c6d8aae9770d02809b8d373256211573c895d419"
+
 COO_PROMETHEUS_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/prometheus@sha256:3d0fd082a59db06cf932b83893a8904dfdc42d02c6bab9360c85e3e197fe03f1"
+
 COO_THANOS_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/thanos@sha256:3f6cf95433123b6a7788b481f093ca4c9bc181595e4d5fa6995389bc0d70c335"
+
 COO_ADMISSION_WEBHOOK_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator-admission-webhook@sha256:67cedb93089d6abf182a3a523c779c9431490c091e4e1c68bf64e2f4824b5aef"
+
 COO_PO_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator@sha256:c0868ab9c67ed0f7edccf8fa0951b7766b10690d1e78300b539b5faccd79cdf8"
+
 COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/dashboards-console-plugin-0-3@sha256:b2aa12f4ed719729497a4508c945f44c32595f2ed4da93edffefb7cd3e5ba21a"
+
 COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/distributed-tracing-console-plugin-0-3@sha256:03569281ffd28d0bb5a614b8a993b0b23792fd6b6e2a3738314cf4fdf24da4db"
+
 COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/logging-console-plugin-6-0@sha256:5b5eb44e7306a461b3beae35c191d5fee3c3c4f4ffed3c6a927507900f24ace0F=df24bb04fb575bf9"
+
 COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/troubleshooting-panel-console-plugin-0-3@sha256:8a47ae096284808cc1199452ac9e9aebf3bb93c0222563f5433a1b31ada518e4"
+
 COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/monitoring-console-plugin-0-3@sha256:239e1de551e5c2fe059b6e6a6ec1ddc313c1bfca2517b3528da021cb7ab72afc"
+
 COO_KORREL8R_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/korrel8r@sha256:f6a87125d193f73791500136f2696be89d473ec2f886b10a40300b68427cc39f"
 
 # Add related images for disconnected installs
