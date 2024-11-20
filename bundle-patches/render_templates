@@ -87,7 +87,7 @@ sed -i -e "s|displayName: Observability Operator|displayName: Cluster Observabil
 sed -i -e "s|Observability Operator is a Go|Cluster Observability Operator is a Go|g" "$csv_file"
 
 # Replace suggest-namespace annotation if present
-sed -i -r "s|operatorframework.io/suggested-namespace: observability-operator|operatorframework.io/suggested-namespace: cluster-observability-operator|" "$csv_file"
+sed -i -r "s|operatorframework.io/suggested-namespace: observability-operator|operatorframework.io/suggested-namespace: openshift-cluster-observability-operator|" "$csv_file"
 
 # Replace link value used in the upstream bundle with the downstream name
 sed -i -e "s|name: Observability Operator|name: Cluster Observability Operator|g" "$csv_file"
