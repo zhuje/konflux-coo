@@ -16,7 +16,7 @@ FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 WORKDIR /
 
 COPY --from=builder /workspace/manager .
-COPY --from=builder /workspace/must-gather/collection-scripts/* .
+COPY --from=builder /workspace/must-gather/collection-scripts/* /usr/bin/
 COPY --from=builder /workspace/LICENSE      /licenses/.
 USER 65532:65532
 
