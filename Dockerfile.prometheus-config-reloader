@@ -27,4 +27,5 @@ LABEL com.redhat.component="coo-po-prometheus-config-reloader" \
       io.k8s.display-name="Prometheus Config Reloader for Prometheus Operator" \
       maintainer="OpenShift Monitoring team <team-monitoring-incluster@redhat.com>" \
       maintainer="Prometheus Config Reloader for Prometheus Operator" \
-      description="Prometheus Config Reloader for Prometheus Operator"
+      description="Prometheus Config Reloader for Prometheus Operator" \
+      io.k8s.description="Prometheus Config Reloader for Prometheus Operator"
