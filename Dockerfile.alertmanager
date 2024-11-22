@@ -3,6 +3,7 @@ FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22
 RUN dnf module install -y nodejs:16/development
 
 ENV NPM_CONFIG_NODEDIR=/usr
+ENV GOFLAGS='-mod=mod'
 
 WORKDIR /workspace
 
