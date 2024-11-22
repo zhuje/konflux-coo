@@ -24,4 +24,5 @@ LABEL com.redhat.component="coo-po-admission-webhook" \
       io.k8s.display-name="Admission Webhook for Prometheus Operator" \
       maintainer="OpenShift Monitoring team <team-monitoring-incluster@redhat.com>" \
       maintainer="Admission Webhook for Prometheus Operator" \
-      description="Admission Webhook for Prometheus Operator"
+      description="Admission Webhook for Prometheus Operator" \
+      io.k8s.description="Admission Webhook for Prometheus Operator"
