@@ -5,6 +5,7 @@ WORKDIR /workspace
 COPY obo-prometheus-operator/ .
 
 ENV GOFLAGS='-mod=mod'
+ENV CGO_ENABLED=0
 
 # Build
 RUN make operator
