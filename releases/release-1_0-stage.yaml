@@ -9,11 +9,11 @@ spec:
   snapshot: cluster-observability-operator-1-0-hd2ks
   data:
     releaseNotes:
-      type: RHEA
+      type: RHBA
       topic: "Cluster Observability Operator 1.0.0 release - staging."
       issues:
         fixed:
-          - id:
-            source:
+          - id: COO-530
+            source: issues.redhat.com
       references:
         - https://access.redhat.com/security/updates/classification
