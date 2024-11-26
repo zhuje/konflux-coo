@@ -16,6 +16,8 @@ WORKDIR /
 
 COPY --from=builder /workspace/korrel8r /bin/korrel8r
 COPY --from=builder /workspace/etc/korrel8r /etc/korrel8r
+COPY --from=builder /workspace/LICENSE      /licenses/.
+USER 1000
 
 ENTRYPOINT [ "/bin/korrel8r", "web" ]
 
