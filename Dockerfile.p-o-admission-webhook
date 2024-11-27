@@ -10,7 +10,7 @@ ENV CGO_ENABLED=0
 # Build
 RUN make admission-webhook
 
-FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1086
+FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 
 COPY --from=builder workspace/admission-webhook /bin/admission-webhook
 COPY --from=builder /workspace/LICENSE      /licenses/.
@@ -29,5 +29,3 @@ LABEL com.redhat.component="coo-po-admission-webhook" \
       maintainer="Admission Webhook for Prometheus Operator" \
       description="Admission Webhook for Prometheus Operator" \
       io.k8s.description="Admission Webhook for Prometheus Operator"
-
-# TODELETE rebuild
