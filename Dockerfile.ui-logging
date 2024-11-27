@@ -53,3 +53,5 @@ LABEL com.redhat.component="coo-logging-console-plugin" \
       io.k8s.description="OpenShift console plugin to view and explore logs" \
       maintainer="Observability UI Team <team-observability-ui@redhat.com>" \
       description="OpenShift console plugin to view and explore logs"
+
+# TODELETE rebuild

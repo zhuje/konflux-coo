@@ -55,3 +55,5 @@ LABEL com.redhat.component="coo-prometheus-container" \
       io.k8s.description="Prometheus is a CNCF project that collects metrics, evaluates rules and triggers alerts." \
       maintainer="team-monitoring@redhat.com" \
       description="Prometheus for Cluster Observability Operator"
+
+# TODELETE rebuild
