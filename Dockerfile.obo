@@ -31,5 +31,3 @@ LABEL com.redhat.component="coo-operator" \
       io.k8s.description="Cluster Observability Operator enables administrators to create standalone monitoring stacks that are independently configurable for use by different services and users." \
       maintainer="Cluster Observability Operator Team <team-monitoring-incluster@redhat.com>" \
       description="Cluster Observability Operator"
-
-# TODELETE rebuild

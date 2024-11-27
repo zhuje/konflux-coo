@@ -30,5 +30,3 @@ LABEL com.redhat.component="coo-korrel8r-container" \
       io.k8s.description="Korrel8r is an observability tool for correlating observable signals and resources in a kubernetes cluster" \
       maintainer="team-monitoring@redhat.com" \
       description="Korrel8r for Cluster Observability Operator"
-
-# TODELETE rebuild
