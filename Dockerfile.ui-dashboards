@@ -52,3 +52,5 @@ LABEL com.redhat.component="coo-dashboards-console-plugin" \
       io.k8s.description="OpenShift console plugin to enhance dashboards datasources" \
       maintainer="Observability UI Team <team-observability-ui@redhat.com>" \
       description="OpenShift console plugin to enhance dashboards datasources"
+
+# TODELETE rebuild

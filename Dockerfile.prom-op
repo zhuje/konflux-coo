@@ -30,3 +30,5 @@ LABEL com.redhat.component="coo-prometheus-operator" \
       description="Prometheus Operator"
 
 ENTRYPOINT ["/bin/operator"]
+
+# TODELETE rebuild
