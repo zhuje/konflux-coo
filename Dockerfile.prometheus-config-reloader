@@ -29,5 +29,3 @@ LABEL com.redhat.component="coo-po-prometheus-config-reloader" \
       maintainer="Prometheus Config Reloader for Prometheus Operator" \
       description="Prometheus Config Reloader for Prometheus Operator" \
       io.k8s.description="Prometheus Config Reloader for Prometheus Operator"
-
-# TODELETE rebuild

@@ -56,5 +56,3 @@ LABEL com.redhat.component="coo-monitoring-console-plugin" \
       io.k8s.description="OpenShift monitoring plugin to view and explore metrics and alerts" \
       maintainer="Observability UI Team <team-observability-ui@redhat.com>" \
       description="OpenShift monitoring plugin to view and explore metrics and alerts"
-
-# TODELETE rebuild
