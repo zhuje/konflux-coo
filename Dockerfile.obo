@@ -15,6 +15,8 @@ RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -a -tags netgo,osusergo -o ma
 FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 WORKDIR /
 
+RUN microdnf install -y rsync tar xz
+
 COPY --from=builder /workspace/manager .
 COPY --from=builder /workspace/must-gather/collection-scripts/* /usr/bin/
 COPY --from=builder /workspace/LICENSE      /licenses/.
