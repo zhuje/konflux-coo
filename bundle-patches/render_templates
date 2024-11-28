@@ -78,6 +78,9 @@ sed -i -e "s|quay.io/rhobs/observability-operator.*|${COO_IMAGE_URL}|g" "$csv_fi
 sed -i -e "s|quay.io/rhobs/obo-prometheus-operator.*|${COO_PO_IMAGE_URL}|g" "$csv_file"
 sed -i -e "s|quay.io/rhobs/obo-admission-webhook.*|${COO_ADMISSION_WEBHOOK_IMAGE_URL}|g" "$csv_file"
 
+# Replace containerImage field with correct image
+sed -i -e "s|containerImage:.*|containerImage: ${COO_IMAGE_URL}|g" "$csv_file"
+
 # Replace annotation values used in the upstream bundle for those in the downstream product bundle
 sed -i -e "s|operators.operatorframework.io.bundle.package.v1: observability-operator|operators.operatorframework.io.bundle.package.v1: cluster-observability-operator|g" "$annotation_file"
 
