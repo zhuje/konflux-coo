@@ -20,7 +20,7 @@ USER 65534
 
 LABEL com.redhat.component="coo-prometheus-operator" \
       name="prometheus-operator" \
-      version="v0.77.1" \
+      version="v0.78.1" \
       summary="Prometheus Operator" \
       io.openshift.tags="monitoring" \
       io.k8s.display-name="Prometheus Operator" \
