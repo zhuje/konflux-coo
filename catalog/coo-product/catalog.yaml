@@ -14,7 +14,7 @@ name: stable
 package: cluster-observability-operator
 schema: olm.channel
 ---
-image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:5ac754afa1281e570a375c5fb780c0638772e41014d406ffdd28d1eadc36a460
+image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:52942dbb9c4bc67409b8db34d9986a84d4d271d3213189d9092ba15becff73e4
 name: cluster-observability-operator.v1.0.0
 package: cluster-observability-operator
 properties:
@@ -129,7 +129,7 @@ properties:
       capabilities: Basic Install
       categories: Monitoring
       certified: "false"
-      containerImage: observability-operator:0.4.2
+      containerImage: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-container@sha256:57614b8fb18626f0c046f98cad2f5231cde7c0f8bf9b62f88c670dab15312012
       createdAt: "2024-11-20T09:07:06Z"
       description: A Go based Kubernetes operator to setup and manage highly available
         Monitoring Stack using Prometheus, Alertmanager and Thanos Querier.
@@ -281,32 +281,32 @@ properties:
     provider:
       name: Red Hat
 relatedImages:
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/alertmanager@sha256:976c64f2a45fe5bbb4de1b14036bf1eacf42a9bf069e987ef753c997e3cef682
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/alertmanager@sha256:044201409c13084102bc4766fa9cae29d46f3903cddb5c4a8dae73c9effe1e4d
   name: alertmanager
 - image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/dashboards-console-plugin-0-3@sha256:113c3b644822f853ce62845d07974dfbc55c9353cf031309cb58262995638f76
   name: ui-dashboards
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/distributed-tracing-console-plugin-0-3@sha256:93401be05380242923bb7683cc22aee798c8c06d4933a8881b60395f3bc7a546
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/distributed-tracing-console-plugin-0-3@sha256:93584a3757f121d0eeb2a9154e9425d004d8099a4179ce71d38a04b19fccebb5
   name: ui-tracing
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/korrel8r@sha256:d6e5baf728c0c82f1efb3dcdd6c0b928b66cb2364a55f654afff6359c1a1fd3c
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/korrel8r@sha256:a81521f417172f48be89d27966fc5ef0640f6b0f5740bffcf108d6fb258edbfb
   name: korrel8r
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/logging-console-plugin-6-0@sha256:7f1cd14cdd6232cb26240fa8df3b5e807d140c5cd1d2d1fc8455550152b7ad98
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/logging-console-plugin-6-0@sha256:0437d78a063ab1d234327c6e9253dc39834a8e3c9e6f6553174433f15db9d158
   name: ui-logging
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/monitoring-console-plugin-0-3@sha256:2a1d0cf8198ddd4b69aa3173d25cb0ce0c7b743ea4e740a02584450b4b729f1e
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/monitoring-console-plugin-0-3@sha256:cb0cf18a768e3e7f6dc740408d99f71be3b0480660b7a8e7d4a7af1a90280632
   name: ui-monitoring
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/prometheus@sha256:81b37e86f5cf1b16b86ee65cc9f8df7e23775c44a621b77b399f828bb67aeefa
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/prometheus@sha256:b114645fef3c543341e466100197d5c9033a04ec171f3efe430803d25de1b98d
   name: prometheus
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/thanos@sha256:2d58e4752581d454dc766b6847d37ecb24bf2567aad5bde21b8c7be0feba3f19
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/thanos@sha256:82a0bd2e2354d319c35d598e0c07a8d3afd86e2dd59f88775e66628a604df437
   name: thanos
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/troubleshooting-panel-console-plugin-0-3@sha256:cc45667df49a79c16bc548e914f137f76306aee194866770e22a3e3782fd374e
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/troubleshooting-panel-console-plugin-0-3@sha256:bbc912fd48954a6c00d9d548051a877e59d792c00e232ac29078b23c524ab5a1
   name: ui-troubleshooting
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:5ac754afa1281e570a375c5fb780c0638772e41014d406ffdd28d1eadc36a460
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:52942dbb9c4bc67409b8db34d9986a84d4d271d3213189d9092ba15becff73e4
   name: ""
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-container@sha256:1f9fd6dfed54e704dbd97a121736f8cde74ddf72d09006a52f7a62997f6f08b3
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-container@sha256:57614b8fb18626f0c046f98cad2f5231cde7c0f8bf9b62f88c670dab15312012
   name: cluster-observability-operator
 - image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator-admission-webhook@sha256:defe64ca4d679589d4a53ec6341952e534e306a81237184f53cc3b7ee939990d
   name: prometheus-operator-admission-webhook
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator-prometheus-config-reloader@sha256:85c95dfcf4a2eaa719ff129abd5cccd5edf8a5e81d247ae706b178414bf967ff
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator-prometheus-config-reloader@sha256:36fcdbc60f37d4ab01df1bf131cb09c41402455ccd59b7cd01a9f33fc92c2027
   name: prometheus-config-reloader
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator@sha256:93bfc2efa3680eb5f94bf48cfb7e25f9ff142c1d65cb2ce0b0b853aa9db01a5c
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator@sha256:6ff328cac05c1ad79aa7db71f48d99d94dcb57155b0ccd29914ddbcb4977d725
   name: prometheus-operator
 schema: olm.bundle
