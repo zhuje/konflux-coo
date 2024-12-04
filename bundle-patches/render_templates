@@ -43,15 +43,15 @@ COO_ADMISSION_WEBHOOK_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabi
 
 COO_PO_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator@sha256:6ff328cac05c1ad79aa7db71f48d99d94dcb57155b0ccd29914ddbcb4977d725"
 
-COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/dashboards-console-plugin-0-3@sha256:113c3b644822f853ce62845d07974dfbc55c9353cf031309cb58262995638f76"
+COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/dashboards-console-plugin-0-3@sha256:9c698f3fb5669d0a181cbd1da3f6851c0dc4d98f2c7b4d3bacd0671f967e8986"
 
-COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/distributed-tracing-console-plugin-0-3@sha256:d57bf1d8c0ce4464e0c601ac24e16dc9e03c2198d0b873b795c96e81c66ec1f5"
+COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/distributed-tracing-console-plugin-0-3@sha256:7c147385260db1b0d51af72493332235267cb308e887d1ae394a0fa014047f05 "
 
 COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/logging-console-plugin-6-0@sha256:473eeb6a4f03377c5ad86ba95361927a5175b55f6a6d19c7eff4a2019d27d3b7"
 
 COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/troubleshooting-panel-console-plugin-0-3@sha256:bbc912fd48954a6c00d9d548051a877e59d792c00e232ac29078b23c524ab5a1"
 
-COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/monitoring-console-plugin-0-3@sha256:cb0cf18a768e3e7f6dc740408d99f71be3b0480660b7a8e7d4a7af1a90280632"
+COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/monitoring-console-plugin-0-3@sha256:9a678d33f04022f770c0a30ff65ee15fb5d556fa59b2ba36d1bb2dcfc44d0dab"
 
 COO_KORREL8R_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/korrel8r@sha256:a81521f417172f48be89d27966fc5ef0640f6b0f5740bffcf108d6fb258edbfb"
 
