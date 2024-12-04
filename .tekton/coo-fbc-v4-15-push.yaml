@@ -6,8 +6,11 @@ metadata:
     build.appstudio.redhat.com/commit_sha: '{{revision}}'
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "main"
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" &&
+      (".tekton/coo-fbc-v4-15-pull-request.yaml".pathChanged() ||
+      (".tekton/coo-fbc-v4-15-push.yaml".pathChanged() ||
+      "Dockerfile-4.15.catalog".pathChanged() ||
+      "catalog/***".pathChanged())
   creationTimestamp: null
   labels:
     appstudio.openshift.io/application: coo-fbc-v4-15
@@ -223,7 +226,7 @@ spec:
         - name: name
           value: buildah-remote-oci-ta
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.2@sha256:389e6691834144113987cd669a6b510e47d2cee55332b940eeb06ce24a9a57a2 
+          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remote-oci-ta:0.2@sha256:389e6691834144113987cd669a6b510e47d2cee55332b940eeb06ce24a9a57a2
         - name: kind
           value: task
         resolver: bundles
