@@ -280,7 +280,7 @@ spec:
         - name: kind
           value: task
         resolver: bundles
-    - name: fbc-validate
+    - name: validate-fbc
       params:
       - name: IMAGE_URL
         value: $(tasks.build-image-index.results.IMAGE_URL)
@@ -291,9 +291,7 @@ spec:
       taskRef:
         params:
         - name: name
-          value: fbc-validation
-        - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-fbc-validation:0.2@sha256:398bab8c575a1b0f3bcc382a0a1879d0c50af1d3a4640ade453eb5e84b4cb659
+          value: validate-fbc
         - name: kind
           value: task
         resolver: bundles
@@ -302,9 +300,6 @@ spec:
         operator: in
         values:
         - "false"
-      workspaces:
-      - name: workspace
-        workspace: workspace
     - name: fbc-related-image-check
       runAfter:
       - fbc-validate
