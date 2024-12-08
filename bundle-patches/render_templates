@@ -53,7 +53,7 @@ COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workload
 
 COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/monitoring-console-plugin-0-3@sha256:db7836ec3b59fc10f29ed252966996099f0363d2b26f4a6d82acdc40647b9376"
 
-COO_KORREL8R_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/korrel8r@sha256:8b38c9ca0d067d7398ff0a3389e7e5ea68c9e188c64982b233de93a548806e89"
+COO_KORREL8R_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/korrel8r@sha256:1b6e0ee0f676c1709d11fbb2738fc77e838bd1843b7f46e7ffd2fff12f03ea16"
 
 # Add related images for disconnected installs
 # First we add an empty list
