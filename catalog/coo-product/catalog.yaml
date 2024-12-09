@@ -14,7 +14,7 @@ name: stable
 package: cluster-observability-operator
 schema: olm.channel
 ---
-image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:ea7325b28ce38762893fe24cdd4cc9e83d5635369528e3e35179f7ae492cbb43
+image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:17deda7a5ae18525101d371d57b6c3720c6e4fe341ffa503e8a32e5a68d3c46a
 name: cluster-observability-operator.v1.0.0
 package: cluster-observability-operator
 properties:
@@ -297,9 +297,9 @@ relatedImages:
   name: prometheus
 - image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/thanos@sha256:dc047e3ffe72076cc4b5219edfe60f0ee3d026d634766e97a80da8fde52ba40a
   name: thanos
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/troubleshooting-panel-console-plugin-0-3@sha256:9240f758dee61d8cacb4163b54470c11b3f706c795ee98bc5320f6a543363670
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/troubleshooting-panel-console-plugin-0-3@sha256:e3996867f3b7b539731933a14596b9b44c7b107008e041c6509c9a1cfb83f37b
   name: ui-troubleshooting
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:ea7325b28ce38762893fe24cdd4cc9e83d5635369528e3e35179f7ae492cbb43
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:17deda7a5ae18525101d371d57b6c3720c6e4fe341ffa503e8a32e5a68d3c46a
   name: ""
 - image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-container@sha256:0b1e313674a63857ef4a55feaef6c4c5d003723ea11957903573f09a81911fc9
   name: cluster-observability-operator
