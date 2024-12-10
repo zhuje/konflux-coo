@@ -18,7 +18,7 @@ WORKDIR /
 RUN microdnf install -y rsync tar xz
 
 COPY --from=builder /workspace/manager .
-COPY --from=builder /workspace/must-gather/collection-scripts/* /usr/bin/
+COPY --from=builder --chmod=0755 /workspace/must-gather/collection-scripts/* /usr/bin/
 COPY --from=builder /workspace/LICENSE      /licenses/.
 USER 65532:65532
 
