@@ -285,7 +285,7 @@ relatedImages:
   name: alertmanager
 - image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/dashboards-console-plugin-0-3@sha256:637f0ce4fb03f829dedc6f523069aa9417db9f6d01a6cb82d78ea6721bec3926
   name: ui-dashboards
-- image: 'quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/distributed-tracing-console-plugin-0-3@sha256:f7fa6e0a6cb7cd3fdf91c4399944eaca52adbf1951f872de5a30f191aaa8d09b '
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/distributed-tracing-console-plugin-0-3@sha256:f7fa6e0a6cb7cd3fdf91c4399944eaca52adbf1951f872de5a30f191aaa8d09b
   name: ui-tracing
 - image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-1-0/korrel8r@sha256:1b6e0ee0f676c1709d11fbb2738fc77e838bd1843b7f46e7ffd2fff12f03ea16
   name: korrel8r
