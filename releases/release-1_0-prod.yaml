@@ -11,59 +11,21 @@ spec:
     releaseNotes:
       type: RHSA
       topic: "Cluster Observability Operator 1.0.0 release- prod."
-      features:
-          - id: COO-476
-            description: Enable COO for OCP platform monitoring
-            source: issues.redhat.com
-          - id: COO-480
-            description: Implements HTTPS support for COO web server
-            source: issues.redhat.com
-          - id: COO-481
-            description: Implements authn/authz for COO web server.
-            source: issues.redhat.com
-          - id: COO-482
-            description: Configures ServiceMonitor resource to collect metrics from COO
-            source: issues.redhat.com
-          - id: COO-483
-            description: Adds operatorframework.io/cluster-monitoring=true annotation to the OLM bundle. 
-            source: issues.redhat.com
-          - id: COO-484
-            description: Defines the alerting strategy for COO
-            source: issues.redhat.com
-          - id: COO-485
-            description: Configures PrometheusRule for alerting.
-            source: issues.redhat.com
-          - id: COO-318
-            description: CRD uiplugins.observability.openshift.io has no support level defined
-            source: issues.redhat.com
-          - id: COO-194
-            description: Add COO resources to mustgather archives
-            source: issues.redhat.com
-          - id: COO-219
-            description: Expose configuration for alertmanager scheme and tlsConfig in Prometheus CR
-            source: issues.redhat.com
-          - id: COO-262
-            description: Monitoring plugin in ACM - Dev Preview
-            source: issues.redhat.com
       issues:
         fixed:
           - id: COO-32
-            description: Default of namespace of COO installation shouldn't be openshift-operators
-            source: issues.redhat.com
-          - id: COO-81
-            description: CVE-2023-26159 coo-prometheus-container follow-redirects Improper Input Validation due to the improper handling of URLs by the url.parse() 
-            source: issues.redhat.com
-          - id: COO-116
-            description: CVE-2024-28849 coo-prometheus-container follow-redirects Possible credential leak
             source: issues.redhat.com
           - id: COO-319
-            description: Bubble size on Scatter plot graph is not rendered correctly for Distributed Tracing UI Plugin
             source: issues.redhat.com
           - id: COO-584
-            description: Run COO must gather, most contents are not gathered for /usr/bin/gather, Permission denied
             source: issues.redhat.com
           - id: COO-601
-            description: COO can't be updated from COO0.4.1 to COO1.0.0
             source: issues.redhat.com
+      cves:
+        - key: CVE-2023-26159 
+          component: coo-prometheus-container
+        - key: CVE-2024-28849
+          component: coo-prometheus-container
       references:
         - https://access.redhat.com/security/updates/classification
+        - https://docs.openshift.com/container-platform/4.17/observability/cluster_observability_operator/cluster-observability-operator-release-notes.html
