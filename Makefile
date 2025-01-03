@@ -12,6 +12,18 @@ generate-catalog: $(OPM)
 	# pre 4.17 the catalog should have bundle-object
 	$(OPM) alpha render-template basic --output yaml catalog/catalog-template.yaml > catalog/coo-product-4.16/catalog.yaml
 
+.PHONY: lint
+lint: lint-pipelines
+
+.PHONY: lint-pipelines
+lint-pipelines: .tekton
+	@echo ">> running yamllint on all pipeline files"
+ifeq (, $(shell command -v yamllint 2> /dev/null))
+	@echo "yamllint not installed so skipping" && exit 1
+else
+	yamllint .tekton
+endif
+
 $(TOOLS_DIR):
 	@mkdir -p $(TOOLS_DIR)
 
