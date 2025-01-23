@@ -35,7 +35,7 @@
 	branch = release-coo-1.0
 [submodule "thanos"]
 	path = thanos
-	url = https://github.com/openshift/thanos/thanos.git
+	url = https://github.com/openshift/thanos.git
         branch = release-4.18
 [submodule "korrel8r"]
         path = korrel8r
