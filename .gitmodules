@@ -45,3 +45,5 @@
 	path = perses-operator
 	url = https://github.com/perses/perses-operator.git
 	#branch = TBD release brach 
+	# sub-module should point to tag v0.1.0
+	ignore = all #ignore all `git submodule updates` to this submodule (will be manually updated to accomdate usage of tags)
