@@ -7,9 +7,9 @@ LABEL maintainer="The Perses Authors <perses-team@googlegroups.com>"
 
 USER nobody
 
-COPY --chown=nobody:nobody perses-operator/bin/manager                   /bin/manager
-COPY --chown=nobody:nobody perses-operator/LICENSE                       /LICENSE
-COPY --from=build-env --chown=nobody:nobody              perses-operator/etc/mime.types /etc/mime.types
+COPY --chown=nobody:nobody perses-operator/bin/manager        /bin/manager
+COPY --chown=nobody:nobody perses-operator/LICENSE            /LICENSE
+COPY --from=build-env --chown=nobody:nobody                   /etc/mime.types /etc/mime.types
 
 EXPOSE     8080
 ENTRYPOINT [ "/bin/manager" ]
