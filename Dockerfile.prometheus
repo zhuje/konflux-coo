@@ -47,7 +47,7 @@ CMD        [ "--config.file=/etc/prometheus/prometheus.yml", \
 
 LABEL com.redhat.component="coo-prometheus-container" \
       name="prometheus/prometheus" \
-      version="v2.55.0" \
+      version="v2.55.1" \
       summary="Prometheus for Cluster Observability Operator" \
       io.openshift.expose-services="" \
       io.openshift.tags="monitoring" \
