@@ -60,6 +60,23 @@ COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-o
 
 COO_KORREL8R_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/korrel8r@sha256:4a608fff61ff7215b41b5ede2a2d81037e1a9a386c6e98b035256b2ef92dbd98"
 
+if [[ $REGISTRY == "registry.redhat.io" ]]; then
+    COO_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_IMAGE_URL:58}"
+    COO_CONF_RELOADER_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_CONF_RELOADER_IMAGE_URL:58}"
+    COO_ALERTMANAGER_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_ALERTMANAGER_IMAGE_URL:58}"
+    COO_PROMETHEUS_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_PROMETHEUS_IMAGE_URL:58}"
+    COO_THANOS_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_THANOS_IMAGE_URL:58}"
+    COO_ADMISSION_WEBHOOK_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_ADMISSION_WEBHOOK_IMAGE_URL:58}"
+    COO_PO_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_PO_IMAGE_URL:58}"
+    COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL:58}"
+    COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL:58}"
+    COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL:58}"
+    COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL:58}"
+    COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL:58}"
+    COO_KORREL8R_IMAGE_URL="$REGISTRY/cluster-observability-operator/${COO_KORREL8R_IMAGE_URL:58}"
+fi
+
+
 # Add related images for disconnected installs
 # First we add an empty list
 yq -i '(.spec += {"relatedImages": []})' "$csv_file"
