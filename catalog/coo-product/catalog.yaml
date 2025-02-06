@@ -14,7 +14,7 @@ name: stable
 package: cluster-observability-operator
 schema: olm.channel
 ---
-image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:b312c41c430eab548ba04d825249eb5d09ee54a8db6e78d16607ed49f584e4bd
+image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:c9f446acee64a45703d39bf78531ca0800fd83fc25a6e6cbfa65bdd42e41f639
 name: cluster-observability-operator.v1.0.0
 package: cluster-observability-operator
 properties:
@@ -281,7 +281,7 @@ properties:
     provider:
       name: Red Hat
 relatedImages:
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:b312c41c430eab548ba04d825249eb5d09ee54a8db6e78d16607ed49f584e4bd
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:c9f446acee64a45703d39bf78531ca0800fd83fc25a6e6cbfa65bdd42e41f639
   name: ""
 - image: registry.redhat.io/cluster-observabilit-tenant/alertmanager@sha256:351d4c4a35a84c4e76c1ffde7cad43bde324788615d136a89349fe9ec9f861c2
   name: alertmanager
