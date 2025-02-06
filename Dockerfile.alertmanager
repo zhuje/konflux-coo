@@ -34,7 +34,7 @@ CMD        [ "--config.file=/etc/alertmanager/alertmanager.yml", \
 
 LABEL com.redhat.component="coo-alertmanager" \
       name="Alertmanager" \
-      version="v0.27.0" \
+      version="v0.28.0" \
       summary="Alertmanager for Cluster Observability Operator" \
       io.openshift.tags="openshift,monitoring" \
       io.k8s.display-name="Alertmanager" \
