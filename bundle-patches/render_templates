@@ -34,31 +34,31 @@ yq -i '.metadata.labels += {"operatorframework.io/arch.arm64": "supported"}' "$c
 yq -i '.metadata.labels += {"operatorframework.io/arch.ppc64le": "supported"}' "$csv_file"
 yq -i '.metadata.labels += {"operatorframework.io/arch.s390x": "supported"}' "$csv_file"
 
-COO_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/cluster-observability-operator-container@sha256:e320568d2e559297573458c35067abba8ec55464b214a78aaece599cd93bae55"
+COO_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/cluster-observability-operator-container@sha256:52125a7cfc0b5b79b1b64bbb1886ade80b36a872e378de0b739cc9a61dd24ad1"
 
-COO_CONF_RELOADER_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/obo-prometheus-operator-prometheus-config-reloader@sha256:0e8aba25b4de72e0d82aaaabfb085ef53a6795cbe4a34d7d25812a228951b172"
+COO_CONF_RELOADER_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/obo-prometheus-operator-prometheus-config-reloader@sha256:9cb0bfe750391a1f623c9b6c51b9f8ba040f061d0a9695459af9b719fc689750"
 
-COO_ALERTMANAGER_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/alertmanager@sha256:351d4c4a35a84c4e76c1ffde7cad43bde324788615d136a89349fe9ec9f861c2"
+COO_ALERTMANAGER_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/alertmanager@sha256:62839a21d39e5f2fee397f84e1e37437d7d17c12018d6f87cf433a1856578e2b"
 
-COO_PROMETHEUS_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/obo-prometheus-operator@sha256:a6dc6ab2faeebecde1a9456dc5d7beafc3390c4e30c14eb57f7456dca50cbe18"
+COO_PROMETHEUS_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/obo-prometheus-operator@sha256:4e13fce3cff4d73518e6f2d39b128c92783719eaa99f0318f429a01a4747d105"
 
-COO_THANOS_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/thanos@sha256:c20ad8dfd03936e25d187efaffbf2389c46e9ceb4cd60d86baa57d059c0dd621"
+COO_THANOS_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/thanos@sha256:7c281e3fa474ab6f280bb4be123b6db8013d10eedf3c42528764b8b5b47082fd"
 
-COO_ADMISSION_WEBHOOK_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/obo-prometheus-operator-admission-webhook@sha256:ac08730db93885f75f3ef9625489e729fa5045545186e3fdc3becd11bc074654"
+COO_ADMISSION_WEBHOOK_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/obo-prometheus-operator-admission-webhook@sha256:8356905ed08feac9e795d96504eee6c5e0e49aee6c7c8df0b202832efbbbc9b1"
 
-COO_PO_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/obo-prometheus-operator@sha256:a6dc6ab2faeebecde1a9456dc5d7beafc3390c4e30c14eb57f7456dca50cbe18"
+COO_PO_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/obo-prometheus-operator@sha256:4e13fce3cff4d73518e6f2d39b128c92783719eaa99f0318f429a01a4747d105"
 
-COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/dashboards-console-plugin-0-3@sha256:11785f29c7ebee36360164194b0f42134c7595bbdb889ad4e6daa468ff8e4820"
+COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/dashboards-console-plugin-0-3@sha256:91e574dfc1168381784df3255dc93cd9f8f1860901f12ece5b47c6f94d78ef74"
 
-COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/distributed-tracing-console-plugin-0-3@sha256:50e38ca537b5ad507f8ba03042624689722cea356d0274ab009fa39b68cec993"
+COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/distributed-tracing-console-plugin-0-3@sha256:2a61079c4ab813e3120e097193da16a302576505ec48139d59cb2d3290ad2aa4"
 
-COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/logging-console-plugin-6-0@sha256:7015b02948d4a2a731cebf58f67ac45af44dc7f86d07def5197abd3c0d625f89"
+COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/logging-console-plugin-6-0@sha256:a48ba0e5b8a5c83d0f5821f5ac04d8b26a3b8b8f655ac00515c30b181091ace7"
 
-COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/troubleshooting-panel-console-plugin-0-3@sha256:35632a0008c7e57d8a4a9d96df2e3e5420bde9cee963bf384ea473927d968d15"
+COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/troubleshooting-panel-console-plugin-0-3@sha256:3a2500932f70c8aa63804ea7c7cedc186c3ba089f741c830a027ab53d1708b8b"
 
-COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/monitoring-console-plugin-0-3@sha256:60aaa8ca0beaac7f50ed72fea347959d4bf1e81b6ac94cef7fcc5c57b1d1277a"
+COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/monitoring-console-plugin-0-3@sha256:63498eca0bfb04b13f62314b4dc4fd2f930af75fe2e07fd3a18484543828a7c5"
 
-COO_KORREL8R_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/korrel8r@sha256:af746b8c83f268d20338040febdb3d634c848d83f04a7ce9713add808f04bc1c"
+COO_KORREL8R_IMAGE_URL="$REGISTRY/cluster-observabilit-tenant/korrel8r@sha256:4a608fff61ff7215b41b5ede2a2d81037e1a9a386c6e98b035256b2ef92dbd98"
 
 # Add related images for disconnected installs
 # First we add an empty list
