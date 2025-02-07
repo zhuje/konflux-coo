@@ -15,7 +15,7 @@ name: stable
 package: cluster-observability-operator
 schema: olm.channel
 ---
-image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:700d83ac72a5b0d26dc6f26cf2a4e0746554033eca2d988857b7708f9da5220c
+image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:78eed9e7362f9883c5eda948d1741e761ba2f8e0a726a12f6304aa25e89ade1b
 name: cluster-observability-operator.v1.0.0
 package: cluster-observability-operator
 properties:
@@ -130,7 +130,7 @@ properties:
       capabilities: Basic Install
       categories: Monitoring
       certified: "false"
-      containerImage: registry.redhat.io/cluster-observability-operator/cluster-observability-operator-container@sha256:52125a7cfc0b5b79b1b64bbb1886ade80b36a872e378de0b739cc9a61dd24ad1
+      containerImage: registry.redhat.io/cluster-observability-operator/cluster-observability-operator-container@sha256:105c34f01b49ef354502312b4d1c7956bb4f135ad36b328cbdc7c9f3d9bd810b
       createdAt: "2024-12-11T10:22:00Z"
       description: A Go based Kubernetes operator to setup and manage highly available
         Monitoring Stack using Prometheus, Alertmanager and Thanos Querier.
@@ -282,11 +282,11 @@ properties:
     provider:
       name: Red Hat
 relatedImages:
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:700d83ac72a5b0d26dc6f26cf2a4e0746554033eca2d988857b7708f9da5220c
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:78eed9e7362f9883c5eda948d1741e761ba2f8e0a726a12f6304aa25e89ade1b
   name: ""
 - image: registry.redhat.io/cluster-observability-operator/alertmanager@sha256:62839a21d39e5f2fee397f84e1e37437d7d17c12018d6f87cf433a1856578e2b
   name: alertmanager
-- image: registry.redhat.io/cluster-observability-operator/cluster-observability-operator-container@sha256:52125a7cfc0b5b79b1b64bbb1886ade80b36a872e378de0b739cc9a61dd24ad1
+- image: registry.redhat.io/cluster-observability-operator/cluster-observability-operator-container@sha256:105c34f01b49ef354502312b4d1c7956bb4f135ad36b328cbdc7c9f3d9bd810b
   name: cluster-observability-operator
 - image: registry.redhat.io/cluster-observability-operator/dashboards-console-plugin-0-3@sha256:91e574dfc1168381784df3255dc93cd9f8f1860901f12ece5b47c6f94d78ef74
   name: ui-dashboards
