@@ -15,7 +15,7 @@ name: stable
 package: cluster-observability-operator
 schema: olm.channel
 ---
-image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:c826f14680b4fc967995cb0411ee2cb23fda768875f4e896933de5e7a7b59387
+image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:700d83ac72a5b0d26dc6f26cf2a4e0746554033eca2d988857b7708f9da5220c
 name: cluster-observability-operator.v1.0.0
 package: cluster-observability-operator
 properties:
@@ -282,7 +282,7 @@ properties:
     provider:
       name: Red Hat
 relatedImages:
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:c826f14680b4fc967995cb0411ee2cb23fda768875f4e896933de5e7a7b59387
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:700d83ac72a5b0d26dc6f26cf2a4e0746554033eca2d988857b7708f9da5220c
   name: ""
 - image: registry.redhat.io/cluster-observability-operator/alertmanager@sha256:62839a21d39e5f2fee397f84e1e37437d7d17c12018d6f87cf433a1856578e2b
   name: alertmanager
@@ -303,9 +303,9 @@ relatedImages:
 - image: registry.redhat.io/cluster-observability-operator/obo-prometheus-operator-prometheus-config-reloader@sha256:9cb0bfe750391a1f623c9b6c51b9f8ba040f061d0a9695459af9b719fc689750
   name: prometheus-config-reloader
 - image: registry.redhat.io/cluster-observability-operator/obo-prometheus-operator@sha256:4e13fce3cff4d73518e6f2d39b128c92783719eaa99f0318f429a01a4747d105
-  name: prometheus
-- image: registry.redhat.io/cluster-observability-operator/obo-prometheus-operator@sha256:4e13fce3cff4d73518e6f2d39b128c92783719eaa99f0318f429a01a4747d105
   name: prometheus-operator
+- image: registry.redhat.io/cluster-observability-operator/prometheus@sha256:3c6e23bfdabf90ab30b23b57dca508079f77b064f9dae8f2b7a39a28c14f8dc5
+  name: prometheus
 - image: registry.redhat.io/cluster-observability-operator/thanos@sha256:7c281e3fa474ab6f280bb4be123b6db8013d10eedf3c42528764b8b5b47082fd
   name: thanos
 - image: registry.redhat.io/cluster-observability-operator/troubleshooting-panel-console-plugin-0-3@sha256:3a2500932f70c8aa63804ea7c7cedc186c3ba089f741c830a027ab53d1708b8b
