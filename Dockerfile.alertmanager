@@ -11,6 +11,7 @@ WORKDIR /workspace
 COPY alertmanager/ .
 
 # Build
+# DEBUG
 ENV NO_DOCKER=true
 RUN make build
 
