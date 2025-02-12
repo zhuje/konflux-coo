@@ -38,7 +38,7 @@ COO_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster
 
 COO_CONF_RELOADER_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-prometheus-operator-prometheus-config-reloader@sha256:f963365b89179cf463a3d0fc906c0a14595e3353bf526ae51e9e3c5c8b66c63b"
 
-COO_ALERTMANAGER_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/alertmanager@sha256:62839a21d39e5f2fee397f84e1e37437d7d17c12018d6f87cf433a1856578e2b"
+COO_ALERTMANAGER_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/alertmanager@sha256:04d2b403cec81e6f8bb7324573a734acc69dc2268a9f650982245021da094b3c"
 
 COO_PROMETHEUS_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/prometheus@sha256:38d2e6e18d8c22058505a35efa3387cf507af0e1aeb75f90bf0a069e42ed1d02"
 
@@ -50,11 +50,11 @@ COO_PO_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/obo-
 
 COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/dashboards-console-plugin-0-3@sha256:16554d0dfc928e24e9259c12eecf25605d1ab17b2ca44316149b06e1a6e01e4e"
 
-COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/distributed-tracing-console-plugin-0-3@sha256:2a61079c4ab813e3120e097193da16a302576505ec48139d59cb2d3290ad2aa4"
+COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/distributed-tracing-console-plugin-0-3@sha256:1030a2735912829affd68eb59423b16810932d0c2d6f2cb2f74734979d7c23a1"
 
 COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/logging-console-plugin-6-0@sha256:58651c88eec2787ebb1e438b26ded99286343eeb4388e586d9e065a67d22f19f"
 
-COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/troubleshooting-panel-console-plugin-0-3@sha256:3a2500932f70c8aa63804ea7c7cedc186c3ba089f741c830a027ab53d1708b8b"
+COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/troubleshooting-panel-console-plugin-0-3@sha256:b654d2be4a6a1fac57e86743bfa8fd2e3acd45cf6d09d2ceedd312d1126f0f11"
 
 COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/monitoring-console-plugin-0-3@sha256:47145db0007979431d153c32e57694cb29c25b4901fdc743e0884cdc12d902d7"
 
