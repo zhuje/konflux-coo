@@ -4,8 +4,6 @@ WORKDIR /opt/app-root
 
 USER 0
 
-# build
-
 ENV HUSKY=0
 COPY ui-troubleshooting-panel/web/package*.json web/
 COPY ui-troubleshooting-panel/Makefile Makefile
