@@ -16,6 +16,6 @@ entries:
   name: stable
   package: cluster-observability-operator
   schema: olm.channel
-- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:6bbed33802a729e68cd4c7022536f83354c7c5d0b39773219786b5050c76b9ca
+- image: quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator-bundle@sha256:c37dbf90983bc2878ee714dd52ace3243ef52d667e903b7a4be45313093ba8df
   schema: olm.bundle
 schema: olm.template.basic
