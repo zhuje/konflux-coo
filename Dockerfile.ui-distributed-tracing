@@ -4,6 +4,8 @@ WORKDIR /opt/app-root
 
 USER 0
 
+# Build
+
 ENV HUSKY=0
 COPY ui-distributed-tracing/web/package*.json web/
 COPY ui-distributed-tracing/Makefile Makefile
