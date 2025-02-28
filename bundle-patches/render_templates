@@ -55,7 +55,7 @@ COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/
 
 COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/logging-console-plugin-6-0@sha256:08a2fa80686a5dbe58fdda1c0e42abd4a1ff1a8bd6efee60a0a706d31c232430"
 
-COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/troubleshooting-panel-console-plugin-0-3@sha256:bf9e7413eb0c05e1b69fb2cf83d182b7de2c875decb9c9dc530ad4a206e62c4d"
+COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/troubleshooting-panel-console-plugin-0-3@sha256:64061474ffe7831e55cb021f859bbf8ce2cd6455b3ce92a0b539ef0129b6ec8f"
 
 COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/monitoring-console-plugin-0-3@sha256:f788777c3f3ebd646847f7eabba70d6d8b29ccb779c3349271ec25f1d30b2964"
 
