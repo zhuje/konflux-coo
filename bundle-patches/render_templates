@@ -59,7 +59,7 @@ COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workload
 
 COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/monitoring-console-plugin-0-3@sha256:f788777c3f3ebd646847f7eabba70d6d8b29ccb779c3349271ec25f1d30b2964"
 
-COO_KORREL8R_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/korrel8r@sha256:0e47a365dbc0d4890c5ef8ab21a633dc4b87f330b6e6f0b65ce80bcfb11ae881"
+COO_KORREL8R_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/korrel8r@sha256:20d107770d7584bfed99aa5168e450681d3fdd265fe0dff272b80741196e64ee"
 
 if [[ $REGISTRY == "registry.redhat.io"  || $REGISTRY == "registry.stage.redhat.io" ]]; then
     COO_IMAGE_URL="$REGISTRY/cluster-observability-operator/cluster-observability-rhel8-operator@sha256:${COO_IMAGE_URL:(-64)}"
