@@ -25,13 +25,10 @@ FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 COPY --from=builder /workspace/prometheus                            /bin/prometheus
 COPY --from=builder /workspace/promtool                              /bin/promtool
 COPY --from=builder /workspace/documentation/examples/prometheus.yml /etc/prometheus/prometheus.yml
-COPY --from=builder /workspace/console_libraries/                    /usr/share/prometheus/console_libraries/
-COPY --from=builder /workspace/consoles/                             /usr/share/prometheus/consoles/
 COPY --from=builder /workspace/LICENSE      /licenses/.
 
 
-RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/ \
-    && mkdir -p /prometheus \
+RUN mkdir -p /prometheus \
     && chgrp -R 0 /etc/prometheus /prometheus \
     && chmod -R g=u /etc/prometheus /prometheus
 
@@ -41,9 +38,7 @@ WORKDIR    /prometheus
 VOLUME     ["/prometheus"]
 ENTRYPOINT ["/bin/prometheus"]
 CMD        [ "--config.file=/etc/prometheus/prometheus.yml", \
-             "--storage.tsdb.path=/prometheus", \
-             "--web.console.libraries=/usr/share/prometheus/console_libraries", \
-             "--web.console.templates=/usr/share/prometheus/consoles" ]
+             "--storage.tsdb.path=/prometheus" ]
 
 LABEL com.redhat.component="coo-prometheus-container" \
       name="prometheus/prometheus" \
