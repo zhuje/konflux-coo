@@ -1,6 +1,6 @@
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22 AS builder
 
-RUN dnf module install -y nodejs:16/development
+RUN dnf module install -y nodejs:22/development
 
 ENV NPM_CONFIG_NODEDIR=/usr
 
@@ -47,7 +47,7 @@ CMD        [ "--config.file=/etc/prometheus/prometheus.yml", \
 
 LABEL com.redhat.component="coo-prometheus-container" \
       name="prometheus/prometheus" \
-      version="v2.55.1" \
+      version="v3.2.1" \
       summary="Prometheus for Cluster Observability Operator" \
       io.openshift.expose-services="" \
       io.openshift.tags="monitoring" \
