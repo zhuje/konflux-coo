@@ -1,17 +1,24 @@
-FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22 AS builder
+FROM registry.redhat.io/ubi9/nodejs-20:latest AS web-builder
 
-RUN dnf module install -y nodejs:16/development
-
-ENV NPM_CONFIG_NODEDIR=/usr
+USER 0
 
 WORKDIR /workspace
 
-RUN yum install -y --setopt=tsflags=nodocs bzip2 jq
-
 COPY prometheus/ .
+
+RUN make assets
+
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_9_golang_1.22 AS builder
+
+WORKDIR /workspace
+
+# RUN yum install -y --setopt=tsflags=nodocs bzip2 jq
+
+COPY --from=web-builder /workspace/ .
 
 ENV GOFLAGS='-mod=mod'
 ENV CGO_ENABLED=0
+ENV SKIP_UI_BUILD=true
 
 # Download and install promu for the specified OS and Architecture
 ARG TARGETOS TARGETARCH
@@ -20,18 +27,15 @@ RUN wget https://github.com/prometheus/promu/releases/download/v0.17.0/promu-0.1
     && rm promu-0.17.0.${TARGETOS}-${TARGETARCH}.tar.gz \
     && make build
 
-FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
+FROM registry.redhat.io/rhel9-4-els/rhel:9.4
 
 COPY --from=builder /workspace/prometheus                            /bin/prometheus
 COPY --from=builder /workspace/promtool                              /bin/promtool
 COPY --from=builder /workspace/documentation/examples/prometheus.yml /etc/prometheus/prometheus.yml
-COPY --from=builder /workspace/console_libraries/                    /usr/share/prometheus/console_libraries/
-COPY --from=builder /workspace/consoles/                             /usr/share/prometheus/consoles/
 COPY --from=builder /workspace/LICENSE      /licenses/.
 
 
-RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/ \
-    && mkdir -p /prometheus \
+RUN mkdir -p /prometheus \
     && chgrp -R 0 /etc/prometheus /prometheus \
     && chmod -R g=u /etc/prometheus /prometheus
 
@@ -41,13 +45,11 @@ WORKDIR    /prometheus
 VOLUME     ["/prometheus"]
 ENTRYPOINT ["/bin/prometheus"]
 CMD        [ "--config.file=/etc/prometheus/prometheus.yml", \
-             "--storage.tsdb.path=/prometheus", \
-             "--web.console.libraries=/usr/share/prometheus/console_libraries", \
-             "--web.console.templates=/usr/share/prometheus/consoles" ]
+             "--storage.tsdb.path=/prometheus" ]
 
 LABEL com.redhat.component="coo-prometheus-container" \
       name="prometheus/prometheus" \
-      version="v2.55.1" \
+      version="v3.2.1" \
       summary="Prometheus for Cluster Observability Operator" \
       io.openshift.expose-services="" \
       io.openshift.tags="monitoring" \

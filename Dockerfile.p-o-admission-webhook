@@ -21,7 +21,7 @@ ENTRYPOINT ["/bin/admission-webhook"]
 
 LABEL com.redhat.component="coo-po-admission-webhook" \
       name="prometheus-operator-admission-webhook" \
-      version="v0.78.1" \
+      version="v0.80.1" \
       summary="Admission Webhook for Prometheus Operator" \
       io.openshift.tags="monitoring" \
       io.k8s.display-name="Admission Webhook for Prometheus Operator" \

@@ -1,4 +1,4 @@
-FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.22 as builder
+FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.23 as builder
 
 WORKDIR /workspace
 # Copy the Go Modules manifests
@@ -32,7 +32,7 @@ ENTRYPOINT ["/manager"]
 
 LABEL com.redhat.component="coo-operator" \
       name="Cluster Observability Operator" \
-      version="v1.0.0" \
+      version="v1.1.0" \
       summary="Cluster Observability Operator" \
       io.openshift.tags="openshift,observability" \
       io.k8s.display-name="Cluster Observability Operator" \

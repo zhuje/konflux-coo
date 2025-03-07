@@ -21,7 +21,7 @@ ENTRYPOINT ["/bin/prometheus-config-reloader"]
 
 LABEL com.redhat.component="coo-po-prometheus-config-reloader" \
       name="prometheus-operator-prometheus-config-reloader" \
-      version="v0.78.1" \
+      version="v0.80.1" \
       summary="Prometheus Config Reloader for Prometheus Operator" \
       io.openshift.tags="monitoring" \
       io.k8s.display-name="Prometheus Config Reloader for Prometheus Operator" \
