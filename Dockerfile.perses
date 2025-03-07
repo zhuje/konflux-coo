@@ -2,8 +2,8 @@ FROM registry.redhat.io/ubi9/nodejs-18:latest AS web-builder
 
 WORKDIR /web
 
-COPY Makefile Makefile
-COPY ui ui
+COPY perses/Makefile Makefile
+COPY perses/ui ui
 
 USER 0
 
@@ -31,10 +31,8 @@ USER 1001
 
 COPY --from=build-env --chown=nobody:nobody /app/bin/perses                         /bin/perses
 COPY --from=build-env --chown=nobody:nobody /app/bin/percli                         /bin/percli
-COPY --from=build-env --chown=nobody:nobody /app/LICENSE                            /bin/LICENSE
-COPY --from=build-env --chown=nobody:nobody /app/plugins-archive/                   /etc/perses/plugins-archive/
 COPY --from=build-env --chown=nobody:nobody /app/docs/examples/config.docker.yaml   /etc/perses/config.yaml
-COPY --from=build-env --chown=nobody:nobody /app/cue/schemas                    /etc/perses/cue/schemas
+COPY --from=build-env --chown=nobody:nobody /app/cue/schemas                        /etc/perses/cue/schemas
 COPY --from=build-env --chown=nobody:nobody /app/cue.mod                            /etc/perses/cue.mod
 COPY --from=build-env --chown=nobody:nobody /app/LICENSE                            /LICENSE
 COPY --from=build-env --chown=nobody:nobody /etc/mime.types                         /etc/mime.types
