@@ -27,7 +27,7 @@ FROM registry.redhat.io/ubi8/ubi-minimal:8.10-1130
 
 LABEL maintainer="Observability UI team <team-observability-ui@redhat.com>"
 
-USER nobody
+USER 1001
 
 COPY --from=build-env --chown=nobody:nobody /app/bin/perses                         /bin/perses
 COPY --from=build-env --chown=nobody:nobody /app/bin/percli                         /bin/percli
