@@ -45,7 +45,7 @@ ENTRYPOINT ["/opt/app-root/plugin-backend", "-static-path", "/opt/app-root/web/d
 
 LABEL com.redhat.component="coo-troubleshooting-panel-console-plugin" \
       name="openshift/troubleshooting-panel-console-plugin" \
-      version="v0.3.0" \
+      version="v0.4.0" \
       summary="OpenShift console plugin to troubleshoot by correlating observability signals" \
       io.openshift.tags="openshift,observability-ui,korrel8r,correlation" \
       io.k8s.display-name="OpenShift console troubleshooting panel plugin" \
