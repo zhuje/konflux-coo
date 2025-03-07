@@ -16,6 +16,7 @@ RUN dnf install -y mailcap && dnf clean all && rm -rf /var/cache/dnf
 WORKDIR /app
 
 COPY perses/ .
+COPY --from=web-builder /web/ui  ui
 
 RUN go mod tidy && go mod vendor 
 RUN make build-api 
