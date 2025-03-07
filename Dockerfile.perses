@@ -1,3 +1,14 @@
+FROM registry.redhat.io/ubi9/nodejs-18:latest AS web-builder
+
+WORKDIR /web
+
+COPY Makefile Makefile
+COPY ui ui
+
+USER 0
+
+RUN make build-ui
+
 FROM brew.registry.redhat.io/rh-osbs/openshift-golang-builder:rhel_8_golang_1.23 AS build-env
 USER root
 RUN dnf install -y mailcap && dnf clean all && rm -rf /var/cache/dnf
