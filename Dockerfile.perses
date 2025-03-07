@@ -18,7 +18,8 @@ WORKDIR /app
 COPY perses/ .
 COPY --from=web-builder /web/ui  ui
 
-RUN go mod tidy && go mod vendor 
+ENV GOFLAGS="-mod=readonly"
+RUN go mod download
 RUN make build-api 
 RUN make build-cli
 
