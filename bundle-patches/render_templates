@@ -51,9 +51,13 @@ COO_PO_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/clus
 
 COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator/dashboards-console-plugin-0-3-rhel9@sha256:678acaef007766d7f001d2f67c4c05e91391496d1830d1f8f43c0913719f245a"
 
-COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator/distributed-tracing-console-plugin-0-3-rhel9@sha256:caaafb6b40c89398df5e67dcb3043e904896c3c0e4fb9d1dfadef707f34ce781"
+COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator/distributed-tracing-console-plugin-0-4-rhel9@sha256:9fc56cfa8100f61d2a14aadf566f543ead7fb2a3dd3fe1cecd0e1c4e6e4ae35b"
 
-COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator/logging-console-plugin-6-0-rhel9@sha256:2bc9272949ca25ec9d8d042bd2422a8b4f109b4f6547ea89b23d0ad558ab8d4e "
+COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_PF4_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator/distributed-tracing-console-plugin-0-3-rhel9@sha256:816af83447f398b40bb7c97e041db8b428e980858798563b20ae785aa8d0da3b"
+
+COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator/logging-console-plugin-6-1-rhel9@sha256:ef913415222a8660e164818244ff8eb66d1edb16c7bd2abfc41d50e265035904"
+
+COO_CONSOLE_LOGGING_PLUGIN_PF4_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator/logging-console-plugin-6-0-rhel9@sha256:2333fa22f29eb321fb7d621ec3c1122ee8db46eb2d71ceac4bee6d671b69d651"
 
 COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="quay.io/redhat-user-workloads/cluster-observabilit-tenant/cluster-observability-operator/troubleshooting-panel-console-plugin-0-3-rhel9@sha256:a4746ce02c0ccd58bcf4da5afaa2175278663c1ae702ff22439ceb4aab160fed"
 
@@ -73,7 +77,9 @@ if [[ $REGISTRY == "registry.redhat.io"  || $REGISTRY == "registry.stage.redhat.
     COO_PO_IMAGE_URL="$REGISTRY/${COO_PO_IMAGE_URL:(58)}"
     COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL="$REGISTRY/${COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL:(58)}"
     COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL="$REGISTRY/${COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL:(58)}"
+    COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_PF4_IMAGE_URL="$REGISTRY/${COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_PF4_IMAGE_URL:(58)}"
     COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL="$REGISTRY/${COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL:(58)}"
+    COO_CONSOLE_LOGGING_PLUGIN_PF4_IMAGE_URL="$REGISTRY/${COO_CONSOLE_LOGGING_PLUGIN_PF4_IMAGE_URL:(58)}"
     COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL="$REGISTRY/${COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL:(58)}"
     COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL="$REGISTRY/${COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL:(58)}"
     COO_KORREL8R_IMAGE_URL="$REGISTRY/${COO_KORREL8R_IMAGE_URL:(58)}"
@@ -93,7 +99,9 @@ VALUE="${COO_ADMISSION_WEBHOOK_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"nam
 VALUE="${COO_PO_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"name":"prometheus-operator", "image": strenv(VALUE)}])' "$csv_file"
 VALUE="${COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"name":"ui-dashboards", "image": strenv(VALUE)}])' "$csv_file"
 VALUE="${COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"name":"ui-tracing", "image": strenv(VALUE)}])' "$csv_file"
+VALUE="${COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_PF4_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"name":"ui-tracing-pf4", "image": strenv(VALUE)}])' "$csv_file"
 VALUE="${COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"name":"ui-logging", "image": strenv(VALUE)}])' "$csv_file"
+VALUE="${COO_CONSOLE_LOGGING_PLUGIN_PF4_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"name":"ui-logging-pf4", "image": strenv(VALUE)}])' "$csv_file"
 VALUE="${COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"name":"ui-troubleshooting", "image": strenv(VALUE)}])' "$csv_file"
 VALUE="${COO_CONSOLE_MONITORING_PLUGIN_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"name":"ui-monitoring", "image": strenv(VALUE)}])' "$csv_file"
 VALUE="${COO_KORREL8R_IMAGE_URL}" yq -i '(.spec.relatedImages += [{"name":"korrel8r", "image": strenv(VALUE)}])' "$csv_file"
@@ -152,8 +160,14 @@ VALUE="${COO_CONSOLE_DASHBOARDS_PLUGIN_IMAGE_URL}" yq -i '(.spec.install.spec.de
 yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=ui-distributed-tracing=$(RELATED_IMAGE_CONSOLE_DISTRIBUTED_TRACING_PLUGIN)"]' "$csv_file"
 VALUE="${COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_CONSOLE_DISTRIBUTED_TRACING_PLUGIN", "value": strenv(VALUE)}]' "$csv_file"
 
+yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=ui-distributed-tracing-pf4=$(RELATED_IMAGE_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_PF4)"]' "$csv_file"
+VALUE="${COO_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_PF4_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_CONSOLE_DISTRIBUTED_TRACING_PLUGIN_PF4", "value": strenv(VALUE)}]' "$csv_file"
+
 yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=ui-logging=$(RELATED_IMAGE_CONSOLE_LOGGING_PLUGIN)"]' "$csv_file"
 VALUE="${COO_CONSOLE_LOGGING_PLUGIN_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_CONSOLE_LOGGING_PLUGIN", "value": strenv(VALUE)}]' "$csv_file"
+
+yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=ui-logging-pf4=$(RELATED_IMAGE_CONSOLE_LOGGING_PLUGIN_PF4)"]' "$csv_file"
+VALUE="${COO_CONSOLE_LOGGING_PLUGIN_PF4_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_CONSOLE_LOGGING_PLUGIN_PF4", "value": strenv(VALUE)}]' "$csv_file"
 
 yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").args) +=  ["--images=ui-troubleshooting-panel=$(RELATED_IMAGE_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN)"]' "$csv_file"
 VALUE="${COO_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN_IMAGE_URL}" yq -i '(.spec.install.spec.deployments[] | select(.name == "observability-operator").spec.template.spec.containers[] | select(.name == "operator").env) += [{"name":"RELATED_IMAGE_CONSOLE_TROUBLESHOOTING_PANEL_PLUGIN", "value": strenv(VALUE)}]' "$csv_file"
